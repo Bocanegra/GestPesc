@@ -11,4 +11,14 @@
 @implementation LAUtils
 
 
++ (void)alertStatus:(NSString *)textMsg withTitle:(NSString *)title andDelegate:(id)delegate {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+                                                        message:textMsg
+                                                       delegate:delegate
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil, nil];
+    
+    [alertView show];
+}
+
 @end

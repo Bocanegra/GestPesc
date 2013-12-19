@@ -7,6 +7,8 @@
 //
 
 #import "LoginViewController.h"
+#import "LAUtils.h"
+
 
 @interface LoginViewController ()
 
@@ -36,24 +38,30 @@
     [claveTextField resignFirstResponder];
 }
 
-- (void)alertStatus:(NSString *)textMsg withTitle:(NSString *)title {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
-                                                        message:textMsg
-                                                       delegate:self
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil, nil];
-    
-    [alertView show];
-}
-
 - (IBAction)loginAction:(id)sender {
-    NSLog(@"loginAction");
-    if ([[usuarioTextField text] isEqualToString:@""] || [[claveTextField text] isEqualToString:@""] ) {
-        [self alertStatus:@"Faltan campos" withTitle:@"Error"];
-    } else {
-        
+    @try {
+        NSLog(@"loginAction");
+        if ([self isLoggedWith:usuarioTextField.text andPassword:claveTextField.text]) {
+            NSLog(@"Login del usuario %@", usuarioTextField.text);
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UITabBarController *tabController = [storyboard instantiateViewControllerWithIdentifier:@"tabMenu"];
+            [self presentViewController:tabController animated:YES completion:nil];
+        } else {
+            [LAUtils alertStatus:@"Usuario/clave erróneos" withTitle:@"Error" andDelegate:self];
+        }
+    } @catch (NSException * e) {
+        NSLog(@"loginAction Exception: %@", e);
+        [LAUtils alertStatus:@"Error al entrar" withTitle:@"Error" andDelegate:self];
     }
 }
+
+- (BOOL)isLoggedWith:(NSString *)user andPassword:(NSString *)password {
+    if ([user isEqualToString:@"luis"] && [password isEqualToString:@"luis"] ) {
+        return YES;
+    }
+    return NO;
+}
+
 
 
 @end

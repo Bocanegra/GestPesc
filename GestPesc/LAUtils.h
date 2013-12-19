@@ -10,5 +10,7 @@
 
 @interface LAUtils : NSObject
 
++ (void)alertStatus:(NSString *)textMsg withTitle:(NSString *)title andDelegate:(id /*<UIAlertViewDelegate>*/)delegate;
+
 
 @end

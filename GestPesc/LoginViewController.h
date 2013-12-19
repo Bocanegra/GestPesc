@@ -16,6 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *entrarButton;
 - (IBAction)loginAction:(id)sender;
 - (IBAction)backgroundClick:(id)sender;
-- (void)alertStatus:(NSString *)textMsg withTitle:(NSString *)title;
+- (BOOL)isLoggedWith:(NSString *)user andPassword:(NSString *)password;
 
 @end
