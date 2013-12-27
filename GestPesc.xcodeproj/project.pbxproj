@@ -251,6 +251,8 @@
 		154D8E661861F32700082F16 /* titleFindFriends.png in Resources */ = {isa = PBXBuildFile; fileRef = 154D8D8C1861F32700082F16 /* titleFindFriends.png */; };
 		154D8E671861F32700082F16 /* titleFindFriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 154D8D8D1861F32700082F16 /* titleFindFriends@2x.png */; };
 		154D8E6D18620B8700082F16 /* LAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 154D8E6C18620B8700082F16 /* LAUtils.m */; };
+		15829644186DA2F2004F1CAA /* EntradasController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15829641186DA2F2004F1CAA /* EntradasController.m */; };
+		15829645186DA2F2004F1CAA /* DetalleEntradaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15829643186DA2F2004F1CAA /* DetalleEntradaController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -514,6 +516,10 @@
 		154D8D8D1861F32700082F16 /* titleFindFriends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleFindFriends@2x.png"; sourceTree = "<group>"; };
 		154D8E6B18620B8700082F16 /* LAUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LAUtils.h; path = GestPesc/LAUtils.h; sourceTree = "<group>"; };
 		154D8E6C18620B8700082F16 /* LAUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LAUtils.m; path = GestPesc/LAUtils.m; sourceTree = "<group>"; };
+		15829640186DA2F2004F1CAA /* EntradasController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntradasController.h; sourceTree = "<group>"; };
+		15829641186DA2F2004F1CAA /* EntradasController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntradasController.m; sourceTree = "<group>"; };
+		15829642186DA2F2004F1CAA /* DetalleEntradaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetalleEntradaController.h; sourceTree = "<group>"; };
+		15829643186DA2F2004F1CAA /* DetalleEntradaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetalleEntradaController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -601,6 +607,10 @@
 		154D8C6E1861B7AB00082F16 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				15829640186DA2F2004F1CAA /* EntradasController.h */,
+				15829641186DA2F2004F1CAA /* EntradasController.m */,
+				15829642186DA2F2004F1CAA /* DetalleEntradaController.h */,
+				15829643186DA2F2004F1CAA /* DetalleEntradaController.m */,
 				154D8C7D1861B7AB00082F16 /* LoginViewController.h */,
 				154D8C7E1861B7AB00082F16 /* LoginViewController.m */,
 			);
@@ -1183,8 +1193,10 @@
 			files = (
 				154D8C751861B7AB00082F16 /* main.m in Sources */,
 				154D8C791861B7AB00082F16 /* LAAppDelegate.m in Sources */,
+				15829644186DA2F2004F1CAA /* EntradasController.m in Sources */,
 				154D8E6D18620B8700082F16 /* LAUtils.m in Sources */,
 				154D8C7F1861B7AB00082F16 /* LoginViewController.m in Sources */,
+				15829645186DA2F2004F1CAA /* DetalleEntradaController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
