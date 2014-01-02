@@ -12,7 +12,8 @@
 @implementation LAAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Parse setApplicationId:@"gWAxCnNo2X9lvEjaOA4T5MZCNLAD8XncfWK2S9Ub" clientKey:@"053ErMPLIbaslpSqekbzZVEVJmPDHWZcTCCHjDoC"];
+    [Parse setApplicationId:@"gWAxCnNo2X9lvEjaOA4T5MZCNLAD8XncfWK2S9Ub"
+                  clientKey:@"053ErMPLIbaslpSqekbzZVEVJmPDHWZcTCCHjDoC"];
     return YES;
 }
 							
