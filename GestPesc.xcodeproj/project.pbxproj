@@ -252,8 +252,8 @@
 		154D8E6D18620B8700082F16 /* LAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 154D8E6C18620B8700082F16 /* LAUtils.m */; };
 		15829644186DA2F2004F1CAA /* EntradasController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15829641186DA2F2004F1CAA /* EntradasController.m */; };
 		15829645186DA2F2004F1CAA /* DetalleEntradaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15829643186DA2F2004F1CAA /* DetalleEntradaController.m */; };
-		A0E1E0E11879C39800CC45CE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E1E0E01879C39800CC45CE /* Parse.framework */; };
-		A0E1E0E21879C39800CC45CE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E1E0E01879C39800CC45CE /* Parse.framework */; };
+		A0E1E0E41879DCE300CC45CE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E1E0E31879DCE300CC45CE /* Parse.framework */; };
+		A0E1E0E51879DCE300CC45CE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E1E0E31879DCE300CC45CE /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -520,7 +520,7 @@
 		15829641186DA2F2004F1CAA /* EntradasController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntradasController.m; sourceTree = "<group>"; };
 		15829642186DA2F2004F1CAA /* DetalleEntradaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetalleEntradaController.h; sourceTree = "<group>"; };
 		15829643186DA2F2004F1CAA /* DetalleEntradaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetalleEntradaController.m; sourceTree = "<group>"; };
-		A0E1E0E01879C39800CC45CE /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		A0E1E0E31879DCE300CC45CE /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -538,7 +538,7 @@
 				154D8CA41861EE8800082F16 /* MobileCoreServices.framework in Frameworks */,
 				154D8CA21861EE8200082F16 /* Security.framework in Frameworks */,
 				154D8CA01861EE7A00082F16 /* SystemConfiguration.framework in Frameworks */,
-				A0E1E0E11879C39800CC45CE /* Parse.framework in Frameworks */,
+				A0E1E0E41879DCE300CC45CE /* Parse.framework in Frameworks */,
 				154D8C6B1861B7AB00082F16 /* CoreGraphics.framework in Frameworks */,
 				154D8C6D1861B7AB00082F16 /* UIKit.framework in Frameworks */,
 				154D8C691861B7AB00082F16 /* Foundation.framework in Frameworks */,
@@ -551,7 +551,7 @@
 			files = (
 				154D8C881861B7AB00082F16 /* XCTest.framework in Frameworks */,
 				154D8C8A1861B7AB00082F16 /* UIKit.framework in Frameworks */,
-				A0E1E0E21879C39800CC45CE /* Parse.framework in Frameworks */,
+				A0E1E0E51879DCE300CC45CE /* Parse.framework in Frameworks */,
 				154D8C891861B7AB00082F16 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -587,7 +587,7 @@
 		154D8C671861B7AB00082F16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A0E1E0E01879C39800CC45CE /* Parse.framework */,
+				A0E1E0E31879DCE300CC45CE /* Parse.framework */,
 				154D8CB11861EEBD00082F16 /* libsqlite3.0.dylib */,
 				154D8CAF1861EEB400082F16 /* CoreLocation.framework */,
 				154D8CAD1861EEAF00082F16 /* StoreKit.framework */,
