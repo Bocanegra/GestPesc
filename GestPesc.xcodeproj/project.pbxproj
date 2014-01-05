@@ -21,7 +21,6 @@
 		154D8C8A1861B7AB00082F16 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154D8C6C1861B7AB00082F16 /* UIKit.framework */; };
 		154D8C921861B7AB00082F16 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 154D8C901861B7AB00082F16 /* InfoPlist.strings */; };
 		154D8C941861B7AB00082F16 /* GestPescTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 154D8C931861B7AB00082F16 /* GestPescTests.m */; };
-		154D8C9E1861EBDD00082F16 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154D8C9D1861EBDD00082F16 /* Parse.framework */; };
 		154D8CA01861EE7A00082F16 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154D8C9F1861EE7A00082F16 /* SystemConfiguration.framework */; };
 		154D8CA21861EE8200082F16 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154D8CA11861EE8200082F16 /* Security.framework */; };
 		154D8CA41861EE8800082F16 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154D8CA31861EE8800082F16 /* MobileCoreServices.framework */; };
@@ -251,10 +250,10 @@
 		154D8E661861F32700082F16 /* titleFindFriends.png in Resources */ = {isa = PBXBuildFile; fileRef = 154D8D8C1861F32700082F16 /* titleFindFriends.png */; };
 		154D8E671861F32700082F16 /* titleFindFriends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 154D8D8D1861F32700082F16 /* titleFindFriends@2x.png */; };
 		154D8E6D18620B8700082F16 /* LAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 154D8E6C18620B8700082F16 /* LAUtils.m */; };
-		156640271875B49100AAD63D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156640261875B49100AAD63D /* Parse.framework */; };
-		156640281875B49100AAD63D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156640261875B49100AAD63D /* Parse.framework */; };
 		15829644186DA2F2004F1CAA /* EntradasController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15829641186DA2F2004F1CAA /* EntradasController.m */; };
 		15829645186DA2F2004F1CAA /* DetalleEntradaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15829643186DA2F2004F1CAA /* DetalleEntradaController.m */; };
+		A0E1E0E11879C39800CC45CE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E1E0E01879C39800CC45CE /* Parse.framework */; };
+		A0E1E0E21879C39800CC45CE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E1E0E01879C39800CC45CE /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,7 +286,6 @@
 		154D8C8F1861B7AB00082F16 /* GestPescTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GestPescTests-Info.plist"; sourceTree = "<group>"; };
 		154D8C911861B7AB00082F16 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		154D8C931861B7AB00082F16 /* GestPescTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GestPescTests.m; sourceTree = "<group>"; };
-		154D8C9D1861EBDD00082F16 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../ParseLogin/Parse.framework; sourceTree = "<group>"; };
 		154D8C9F1861EE7A00082F16 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		154D8CA11861EE8200082F16 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		154D8CA31861EE8800082F16 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -518,11 +516,11 @@
 		154D8D8D1861F32700082F16 /* titleFindFriends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "titleFindFriends@2x.png"; sourceTree = "<group>"; };
 		154D8E6B18620B8700082F16 /* LAUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LAUtils.h; path = GestPesc/LAUtils.h; sourceTree = "<group>"; };
 		154D8E6C18620B8700082F16 /* LAUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LAUtils.m; path = GestPesc/LAUtils.m; sourceTree = "<group>"; };
-		156640261875B49100AAD63D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		15829640186DA2F2004F1CAA /* EntradasController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntradasController.h; sourceTree = "<group>"; };
 		15829641186DA2F2004F1CAA /* EntradasController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntradasController.m; sourceTree = "<group>"; };
 		15829642186DA2F2004F1CAA /* DetalleEntradaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetalleEntradaController.h; sourceTree = "<group>"; };
 		15829643186DA2F2004F1CAA /* DetalleEntradaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetalleEntradaController.m; sourceTree = "<group>"; };
+		A0E1E0E01879C39800CC45CE /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -530,18 +528,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				154D8C9E1861EBDD00082F16 /* Parse.framework in Frameworks */,
 				154D8CB21861EEBD00082F16 /* libsqlite3.0.dylib in Frameworks */,
 				154D8CB01861EEB400082F16 /* CoreLocation.framework in Frameworks */,
 				154D8CAE1861EEAF00082F16 /* StoreKit.framework in Frameworks */,
 				154D8CAC1861EEA800082F16 /* QuartzCore.framework in Frameworks */,
-				156640271875B49100AAD63D /* Parse.framework in Frameworks */,
 				154D8CAA1861EEA200082F16 /* AudioToolbox.framework in Frameworks */,
 				154D8CA81861EE9C00082F16 /* CFNetwork.framework in Frameworks */,
 				154D8CA61861EE9600082F16 /* libz.1.1.3.dylib in Frameworks */,
 				154D8CA41861EE8800082F16 /* MobileCoreServices.framework in Frameworks */,
 				154D8CA21861EE8200082F16 /* Security.framework in Frameworks */,
 				154D8CA01861EE7A00082F16 /* SystemConfiguration.framework in Frameworks */,
+				A0E1E0E11879C39800CC45CE /* Parse.framework in Frameworks */,
 				154D8C6B1861B7AB00082F16 /* CoreGraphics.framework in Frameworks */,
 				154D8C6D1861B7AB00082F16 /* UIKit.framework in Frameworks */,
 				154D8C691861B7AB00082F16 /* Foundation.framework in Frameworks */,
@@ -554,7 +551,7 @@
 			files = (
 				154D8C881861B7AB00082F16 /* XCTest.framework in Frameworks */,
 				154D8C8A1861B7AB00082F16 /* UIKit.framework in Frameworks */,
-				156640281875B49100AAD63D /* Parse.framework in Frameworks */,
+				A0E1E0E21879C39800CC45CE /* Parse.framework in Frameworks */,
 				154D8C891861B7AB00082F16 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -590,7 +587,7 @@
 		154D8C671861B7AB00082F16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				156640261875B49100AAD63D /* Parse.framework */,
+				A0E1E0E01879C39800CC45CE /* Parse.framework */,
 				154D8CB11861EEBD00082F16 /* libsqlite3.0.dylib */,
 				154D8CAF1861EEB400082F16 /* CoreLocation.framework */,
 				154D8CAD1861EEAF00082F16 /* StoreKit.framework */,
@@ -601,7 +598,6 @@
 				154D8CA31861EE8800082F16 /* MobileCoreServices.framework */,
 				154D8CA11861EE8200082F16 /* Security.framework */,
 				154D8C9F1861EE7A00082F16 /* SystemConfiguration.framework */,
-				154D8C9D1861EBDD00082F16 /* Parse.framework */,
 				154D8C681861B7AB00082F16 /* Foundation.framework */,
 				154D8C6A1861B7AB00082F16 /* CoreGraphics.framework */,
 				154D8C6C1861B7AB00082F16 /* UIKit.framework */,
@@ -1334,6 +1330,7 @@
 					"$(inherited)",
 					/Users/lagm/Proyectos/PruebaDavid/ParseLogin,
 					"/Users/lagm/Proyectos/PruebaDavid/gestpesc-ios",
+					/Users/luis/Proyectos/GestPesc,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GestPesc/GestPesc-Prefix.pch";
@@ -1352,6 +1349,7 @@
 					"$(inherited)",
 					/Users/lagm/Proyectos/PruebaDavid/ParseLogin,
 					"/Users/lagm/Proyectos/PruebaDavid/gestpesc-ios",
+					/Users/luis/Proyectos/GestPesc,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GestPesc/GestPesc-Prefix.pch";
@@ -1371,6 +1369,7 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"/Users/lagm/Proyectos/PruebaDavid/gestpesc-ios",
+					/Users/luis/Proyectos/GestPesc,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GestPesc/GestPesc-Prefix.pch";
@@ -1395,6 +1394,7 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"/Users/lagm/Proyectos/PruebaDavid/gestpesc-ios",
+					/Users/luis/Proyectos/GestPesc,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GestPesc/GestPesc-Prefix.pch";

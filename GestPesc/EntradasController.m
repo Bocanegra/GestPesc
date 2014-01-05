@@ -46,7 +46,7 @@
     self = [super initWithCoder:aCoder];
     if (self) {
         // The className to query on
-        self.parseClassName = @"tmp_articulo";
+        self.parseClassName = @"Articulo";
         
         // The key of the PFObject to display in the label of the default cell style
         self.textKey = @"nombre";
@@ -81,34 +81,26 @@
 
 #pragma mark - Table View
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return entradas.count;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     NSLog(@"cellForRowAtIndexPath");
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"entradaCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"entradaCell"];
 
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"entradaCell"];
     }
 
     // Configurar la celda con datos del backend
-//    PFImageView *thumbnailImageView = (PFImageView*)[cell viewWithTag:103];
-    //thumbnailImageView.image = [UIImage imageNamed:@"placeholder.png"];
-//    PFFile *thumbnail = [object objectForKey:@"imagen"];
-//    thumbnailImageView.file = thumbnail;
-//    [thumbnailImageView loadInBackground];
+    PFFile *thumbnail = [object objectForKey:@"imagen"];
+    PFImageView *thumbnailImageView = (PFImageView*)[cell viewWithTag:103];
+    thumbnailImageView.image = [UIImage imageNamed:@"BgLeather.png"];
+    thumbnailImageView.file = thumbnail;
+    [thumbnailImageView loadInBackground];
     UILabel *nombreLabel = (UILabel*) [cell viewWithTag:100];
     nombreLabel.text = [object objectForKey:@"nombre"];
     UILabel *stockLabel = (UILabel*) [cell viewWithTag:101];
-    stockLabel.text = [object objectForKey:@"stock_total"];
+    stockLabel.text = [[object objectForKey:@"stock_total"] stringValue];
     UILabel *precioLabel = (UILabel*) [cell viewWithTag:102];
-    precioLabel.text = [object objectForKey:@"precio"];
+    precioLabel.text = [NSString stringWithFormat:@"%@ €", [[object objectForKey:@"precio"] stringValue]];
     return cell;
 }
 

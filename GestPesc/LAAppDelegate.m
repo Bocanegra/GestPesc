@@ -7,7 +7,8 @@
 //
 
 #import "LAAppDelegate.h"
-#import "Parse/Parse.h"
+#import <Parse/Parse.h>
+
 
 @implementation LAAppDelegate
 
