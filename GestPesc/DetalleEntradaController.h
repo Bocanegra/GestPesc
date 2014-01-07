@@ -6,10 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
-@interface DetalleEntradaController : UIViewController
+@interface DetalleEntradaController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
-@property (strong, nonatomic) id detailItem;
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+- (void)setEntradaObject:(PFObject *)nuevaEntrada;
 
 @end

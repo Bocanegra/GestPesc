@@ -252,6 +252,7 @@
 		154D8E6D18620B8700082F16 /* LAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 154D8E6C18620B8700082F16 /* LAUtils.m */; };
 		15829644186DA2F2004F1CAA /* EntradasController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15829641186DA2F2004F1CAA /* EntradasController.m */; };
 		15829645186DA2F2004F1CAA /* DetalleEntradaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15829643186DA2F2004F1CAA /* DetalleEntradaController.m */; };
+		A02C7148187C7FFC00114904 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A02C7147187C7FFC00114904 /* MBProgressHUD.m */; };
 		A0E1E0E41879DCE300CC45CE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E1E0E31879DCE300CC45CE /* Parse.framework */; };
 		A0E1E0E51879DCE300CC45CE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E1E0E31879DCE300CC45CE /* Parse.framework */; };
 /* End PBXBuildFile section */
@@ -520,6 +521,8 @@
 		15829641186DA2F2004F1CAA /* EntradasController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntradasController.m; sourceTree = "<group>"; };
 		15829642186DA2F2004F1CAA /* DetalleEntradaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetalleEntradaController.h; sourceTree = "<group>"; };
 		15829643186DA2F2004F1CAA /* DetalleEntradaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetalleEntradaController.m; sourceTree = "<group>"; };
+		A02C7146187C7FFC00114904 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		A02C7147187C7FFC00114904 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		A0E1E0E31879DCE300CC45CE /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -562,6 +565,7 @@
 		154D8C5C1861B7AB00082F16 = {
 			isa = PBXGroup;
 			children = (
+				A02C7149187C800E00114904 /* MBProgressHUD */,
 				154D8E6B18620B8700082F16 /* LAUtils.h */,
 				154D8E6C18620B8700082F16 /* LAUtils.m */,
 				154D8C7A1861B7AB00082F16 /* Main.storyboard */,
@@ -875,6 +879,15 @@
 				154D8D8D1861F32700082F16 /* titleFindFriends@2x.png */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		A02C7149187C800E00114904 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				A02C7146187C7FFC00114904 /* MBProgressHUD.h */,
+				A02C7147187C7FFC00114904 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1199,6 +1212,7 @@
 				154D8E6D18620B8700082F16 /* LAUtils.m in Sources */,
 				154D8C7F1861B7AB00082F16 /* LoginViewController.m in Sources */,
 				15829645186DA2F2004F1CAA /* DetalleEntradaController.m in Sources */,
+				A02C7148187C7FFC00114904 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1328,7 +1342,6 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/lagm/Proyectos/PruebaDavid/ParseLogin,
 					"/Users/lagm/Proyectos/PruebaDavid/gestpesc-ios",
 					/Users/luis/Proyectos/GestPesc,
 				);
@@ -1347,7 +1360,6 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/lagm/Proyectos/PruebaDavid/ParseLogin,
 					"/Users/lagm/Proyectos/PruebaDavid/gestpesc-ios",
 					/Users/luis/Proyectos/GestPesc,
 				);
