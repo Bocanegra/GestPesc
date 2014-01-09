@@ -25,10 +25,12 @@
 @property (weak, nonatomic) IBOutlet UITextView *comentariosTextView;
 @property (strong, nonatomic) PFObject *entrada;
 @property NSDateFormatter *formatoFecha;
+@property BOOL nuevaEntrada;
 
 - (IBAction)cogerFotoEntrada:(id)sender;
-- (void)configureView;
 - (IBAction)guardarEntrada:(id)sender;
+- (void)configureView;
+-(void)fechaEnvioCambiada:(NSNotification *)notification;
 
 
 @end
@@ -79,11 +81,12 @@
     }
 }
 
-- (void)setEntradaObject:(PFObject *)nuevaEntrada {
-    if (_entrada != nuevaEntrada) {
-        _entrada = nuevaEntrada;
+- (void)setEntradaObject:(PFObject *)miEntrada nueva:(BOOL)esNueva {
+    if (_entrada != miEntrada) {
+        _entrada = miEntrada;
         [self configureView];
     }
+    self.nuevaEntrada = esNueva;
 }
 
 - (IBAction)guardarEntrada:(id)sender {
@@ -126,7 +129,10 @@
         } else {
             [LAUtils alertStatus:@"Hay problemas para actualizar la entrada" withTitle:@"Error" andDelegate:self];
         }
+        // Y volvemos a la lista de Entradas
+        [self.navigationController popViewControllerAnimated:YES];
     }];
+    
 }
 
 
@@ -158,11 +164,36 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)fechaEnvioCambiada:(NSNotification *)notification {
+    
+}
 
-#pragma mark - Textfield delegate
+#pragma mark - TextField and TextView delegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if (textField == self.fechaEnvioTextField) {
+        // Abro la vista para elegir la fecha de envío
+        UIDatePicker* picker = [[UIDatePicker alloc] init];
+        picker.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        picker.datePickerMode = UIDatePickerModeDateAndTime;
+        [picker addTarget:self
+                   action:@selector(fechaEnvioCambiada:)
+         forControlEvents:UIControlEventValueChanged];
+        CGSize pickerSize = [picker sizeThatFits:CGSizeZero];
+        picker.frame = CGRectMake(0.0, 250, pickerSize.width, 460);
+        [self.view addSubview:picker];
+        return NO;
+    }
+    return YES;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
+    return YES;
+}
+
+-(BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    [textView resignFirstResponder];
     return YES;
 }
 

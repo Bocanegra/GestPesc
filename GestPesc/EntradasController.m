@@ -19,15 +19,9 @@
 
 
 - (void)viewDidLoad {
-    NSLog(@"viewDidLoad");
     [super viewDidLoad];
 	// Crear botones de arriba
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-//                                                                               target:self
-//                                                                               action:@selector(crearNuevaEntrada:)];
-//    self.navigationItem.rightBarButtonItem = addButton;
-    
     // Creamos un nuevo notificador para refrescar los datos de la tabla
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(refrescarEntradas:)
@@ -78,21 +72,6 @@
     return query;
 }
 
-- (void)crearNuevaEntrada:(id)sender {
-    NSLog(@"crearNuevaEntrada");
-    // Creamos una entrada nueva
-    PFObject *entrada = [PFObject objectWithClassName:@"Articulo"];
-    [entrada saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [self refrescarEntradas:nil];
-    }];
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    // Y saltamos al detalle de la Entrada
-    DetalleEntradaController *detalleController = [[DetalleEntradaController alloc] init];
-    [detalleController setEntradaObject:entrada];
-    [self presentViewController:detalleController animated:YES completion:nil];
-}
-
 #pragma mark - Table View
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
@@ -137,11 +116,11 @@
     if ([[segue identifier] isEqualToString:@"muestraEntrada"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
-        [destViewController setEntradaObject:object];
+        [destViewController setEntradaObject:object nueva:NO];
     } else if ([[segue identifier] isEqualToString:@"creaEntrada"]) {
         // Creamos el objeto y lo pasamos al controller del detalle
         PFObject *entrada = [PFObject objectWithClassName:@"Articulo"];
-        [destViewController setEntradaObject:entrada];
+        [destViewController setEntradaObject:entrada nueva:YES];
     }
 }
 
