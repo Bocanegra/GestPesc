@@ -180,7 +180,13 @@
                             <outlet property="delegate" destination="7Af-pD-kns" id="9HU-9A-Y1X"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Entradas" id="mAk-ie-6TM"/>
+                    <navigationItem key="navigationItem" title="Entradas" id="mAk-ie-6TM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2EC-n7-PwS">
+                            <connections>
+                                <segue destination="BUy-Tc-dCW" kind="push" identifier="creaEntrada" id="mDm-P1-asS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JKp-mm-3F3" sceneMemberID="firstResponder"/>
             </objects>
@@ -359,4 +365,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="mDm-P1-asS"/>
+    </inferredMetricsTieBreakers>
 </document>

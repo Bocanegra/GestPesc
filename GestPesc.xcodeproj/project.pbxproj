@@ -253,6 +253,7 @@
 		15829644186DA2F2004F1CAA /* EntradasController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15829641186DA2F2004F1CAA /* EntradasController.m */; };
 		15829645186DA2F2004F1CAA /* DetalleEntradaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15829643186DA2F2004F1CAA /* DetalleEntradaController.m */; };
 		A02C7148187C7FFC00114904 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A02C7147187C7FFC00114904 /* MBProgressHUD.m */; };
+		A0CC2792187EBAD800E40177 /* README.TXT in Resources */ = {isa = PBXBuildFile; fileRef = A0CC2791187EBAD800E40177 /* README.TXT */; };
 		A0E1E0E41879DCE300CC45CE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E1E0E31879DCE300CC45CE /* Parse.framework */; };
 		A0E1E0E51879DCE300CC45CE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E1E0E31879DCE300CC45CE /* Parse.framework */; };
 /* End PBXBuildFile section */
@@ -523,6 +524,7 @@
 		15829643186DA2F2004F1CAA /* DetalleEntradaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetalleEntradaController.m; sourceTree = "<group>"; };
 		A02C7146187C7FFC00114904 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		A02C7147187C7FFC00114904 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		A0CC2791187EBAD800E40177 /* README.TXT */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.TXT; sourceTree = "<group>"; };
 		A0E1E0E31879DCE300CC45CE /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -565,6 +567,7 @@
 		154D8C5C1861B7AB00082F16 = {
 			isa = PBXGroup;
 			children = (
+				A0CC2791187EBAD800E40177 /* README.TXT */,
 				A02C7149187C800E00114904 /* MBProgressHUD */,
 				154D8E6B18620B8700082F16 /* LAUtils.h */,
 				154D8E6C18620B8700082F16 /* LAUtils.m */,
@@ -1063,6 +1066,7 @@
 				154D8E4A1861F32700082F16 /* profilePictureStroke.png in Resources */,
 				154D8DA91861F32700082F16 /* backgroundNavigationBar@2x.png in Resources */,
 				154D8D8E1861F32700082F16 /* 29-29_pic_shadows.png in Resources */,
+				A0CC2792187EBAD800E40177 /* README.TXT in Resources */,
 				154D8E111861F32700082F16 /* icon_settings_pressed.png in Resources */,
 				154D8E551861F32700082F16 /* shadowProfilePicture-29@2x.png in Resources */,
 				154D8DCE1861F32700082F16 /* buttonLike.png in Resources */,

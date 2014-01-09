@@ -9,6 +9,7 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "MBProgressHUD.h"
 #import "LAUtils.h"
+#import <Foundation/NSCharacterSet.h>
 
 
 @interface DetalleEntradaController ()
@@ -89,18 +90,22 @@
     NSLog(@"guardarEntrada");
     // Actualizamos los datos del objeto entrada
     // TODO: Comprobar datos de entrada
-    [self.entrada setObject:_nombreProductoTextField.text forKey:@"nombre"];
-    [self.entrada setObject:_stockTotalTextField.text forKey:@"stock_total"];
-    [self.entrada setObject:_precioTextField.text forKey:@"precio"];
-    [self.entrada setObject:_stockDisponibleTextField.text forKey:@"stock_disponible"];
-    [self.entrada setObject:_formatoCajaTextField.text forKey:@"formato_caja"];
-//    [self.entrada setObject:_calidadTextField.text forKey:@"fk_categoria"];
-//    [self.entrada setObject:_fechaEnvioTextField.text forKey:@"entregado"];
-    [self.entrada setObject:_comentariosTextView.text forKey:@"descripcion"];
-    // Imagen en JPG, con escasa compresión
-    NSData *imageData = UIImageJPEGRepresentation(_fotoProducto.image, 0.8);
-    PFFile *imageFile = [PFFile fileWithName:@"foto.jpg" data:imageData];
-    [self.entrada setObject:imageFile forKey:@"imagen"];
+    @try {
+        self.entrada[@"nombre"] = _nombreProductoTextField.text;
+        self.entrada[@"stock_total"] = @([_stockTotalTextField.text integerValue]);
+        self.entrada[@"precio"] = @([_precioTextField.text integerValue]);
+        self.entrada[@"stock_disponible"] = @([_stockDisponibleTextField.text integerValue]);
+        self.entrada[@"formato_caja"] = @([_formatoCajaTextField.text integerValue]);
+        self.entrada[@"descripcion"] = _fechaEnvioTextField.text;
+        //    [self.entrada setObject:_calidadTextField.text forKey:@"fk_categoria"];
+        //    [self.entrada setObject:_fechaEnvioTextField.text forKey:@"entregado"];
+        // Imagen en JPG, con escasa compresión
+        NSData *imageData = UIImageJPEGRepresentation(_fotoProducto.image, 0.8);
+        PFFile *imageFile = [PFFile fileWithName:@"foto.jpg" data:imageData];
+        self.entrada[@"imagen"] = imageFile;
+    } @catch (NSException *exception) {
+        [LAUtils alertStatus:@"Datos no válidos, revíselos" withTitle:@"Error" andDelegate:self];
+    }
     
     // Barra de progreso
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -115,7 +120,7 @@
             // Correcto, se muestra un mensaje
             [LAUtils alertStatus:@"¡Entrada actualizada!" withTitle:@"Info" andDelegate:self];
             // Notificamos a table view para que recargue las entradas desde Parse
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshTable" object:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refrescarEntradas" object:self];
             // Dismiss the controller
             [self dismissViewControllerAnimated:YES completion:nil];
         } else {
@@ -123,7 +128,6 @@
         }
     }];
 }
-
 
 
 #pragma mark - Métodos para la captura de imagen

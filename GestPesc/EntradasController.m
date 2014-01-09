@@ -11,7 +11,7 @@
 #import "DetalleEntradaController.h"
 
 @interface EntradasController () {
-    NSMutableArray *entradas;
+    
 }
 @end
 
@@ -21,11 +21,23 @@
 - (void)viewDidLoad {
     NSLog(@"viewDidLoad");
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	// Crear botones de arriba
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
+//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+//                                                                               target:self
+//                                                                               action:@selector(crearNuevaEntrada:)];
+//    self.navigationItem.rightBarButtonItem = addButton;
+    
+    // Creamos un nuevo notificador para refrescar los datos de la tabla
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refrescarEntradas:)
+                                                 name:@"refrescarEntradas"
+                                               object:nil];
+}
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+- (void)refrescarEntradas:(NSNotification *)notification {
+    // Recarga los objetos de la query de Parse
+    [self loadObjects];
 }
 
 - (void)viewDidUnload {
@@ -47,13 +59,10 @@
     if (self) {
         // The className to query on
         self.parseClassName = @"Articulo";
-        
         // The key of the PFObject to display in the label of the default cell style
         self.textKey = @"nombre";
-        
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
-        
         // Whether the built-in pagination is enabled
         self.paginationEnabled = YES;
         self.objectsPerPage = 10;
@@ -69,14 +78,19 @@
     return query;
 }
 
-
-- (void)insertNewObject:(id)sender {
-    if (!entradas) {
-        entradas = [[NSMutableArray alloc] init];
-    }
-    [entradas insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+- (void)crearNuevaEntrada:(id)sender {
+    NSLog(@"crearNuevaEntrada");
+    // Creamos una entrada nueva
+    PFObject *entrada = [PFObject objectWithClassName:@"Articulo"];
+    [entrada saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [self refrescarEntradas:nil];
+    }];
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    // Y saltamos al detalle de la Entrada
+    DetalleEntradaController *detalleController = [[DetalleEntradaController alloc] init];
+    [detalleController setEntradaObject:entrada];
+    [self presentViewController:detalleController animated:YES completion:nil];
 }
 
 #pragma mark - Table View
@@ -84,7 +98,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     NSLog(@"cellForRowAtIndexPath");
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"entradaCell"];
-
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"entradaCell"];
     }
@@ -111,19 +124,24 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [entradas removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        // Eliminamos la entrada del backend
+        PFObject *entrada = [self.objects objectAtIndex:indexPath.row];
+        [entrada deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self refrescarEntradas:nil];
+        }];
     }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    DetalleEntradaController *destViewController = segue.destinationViewController;
     if ([[segue identifier] isEqualToString:@"muestraEntrada"]) {
-        DetalleEntradaController *destViewController = segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
         [destViewController setEntradaObject:object];
+    } else if ([[segue identifier] isEqualToString:@"creaEntrada"]) {
+        // Creamos el objeto y lo pasamos al controller del detalle
+        PFObject *entrada = [PFObject objectWithClassName:@"Articulo"];
+        [destViewController setEntradaObject:entrada];
     }
 }
 
