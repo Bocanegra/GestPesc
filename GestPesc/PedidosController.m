@@ -1,35 +1,39 @@
 //
-//  EntradasController.m
+//  PedidosController.m
 //  GestPesc
 //
-//  Created by Luis Ángel García Muñoz on 27/12/13.
-//  Copyright (c) 2013 Luis Ángel García Muñoz. All rights reserved.
+//  Created by Luis Angel on 10/01/14.
+//  Copyright (c) 2014 Luis Ángel García Muñoz. All rights reserved.
 //
 
-#import "EntradasController.h"
-#import "DetalleEntradaController.h"
+#import "PedidosController.h"
+#import "ConfirmarPedidoController.h"
 
 
-@interface EntradasController () {
-    
-}
+@interface PedidosController ()
+
 @end
 
-@implementation EntradasController
+@implementation PedidosController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	// Crear botones de arriba
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     // Creamos un nuevo notificador para refrescar los datos de la tabla
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(refrescarEntradas:)
-                                                 name:@"refrescarEntradas"
+                                             selector:@selector(refrescarPedidos:)
+                                                 name:@"refrescarPedidos"
                                                object:nil];
 }
 
-- (void)refrescarEntradas:(NSNotification *)notification {
+- (void)refrescarPedidos:(NSNotification *)notification {
     // Recarga los objetos de la query de Parse
     [self loadObjects];
 }
@@ -45,16 +49,15 @@
 }
 
 #pragma mark - Parse methods
-
-// Configure Parse access to backend
+// Configurar Parse para acceder a objetos Pedido
 - (id)initWithCoder:(NSCoder *)aCoder {
     NSLog(@"initWithCoder");
     self = [super initWithCoder:aCoder];
     if (self) {
         // The className to query on
-        self.parseClassName = @"Articulo";
+        self.parseClassName = @"Pedido";
         // The key of the PFObject to display in the label of the default cell style
-        self.textKey = @"nombre";
+        //self.textKey = @"nombre";
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
         // Whether the built-in pagination is enabled
@@ -72,16 +75,16 @@
     return query;
 }
 
-#pragma mark - Table View
 
+#pragma mark - Métodos de Table View
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     NSLog(@"cellForRowAtIndexPath");
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"entradaCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pedidoCell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"entradaCell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"pedidoCell"];
     }
-
     // Configurar la celda con datos del backend
+    /*
     PFFile *thumbnail = [object objectForKey:@"imagen"];
     PFImageView *thumbnailImageView = (PFImageView*)[cell viewWithTag:103];
     thumbnailImageView.image = [UIImage imageNamed:@"BgLeather.png"];
@@ -93,50 +96,17 @@
     stockLabel.text = [[object objectForKey:@"stock_total"] stringValue];
     UILabel *precioLabel = (UILabel*) [cell viewWithTag:102];
     precioLabel.text = [NSString stringWithFormat:@"%@ €", [[object objectForKey:@"precio"] stringValue]];
+     */
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Devolver NO si alguna fila en concreto no queremos que se pueda editar (borrar)
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Eliminamos la entrada del backend
-        PFObject *entrada = [self.objects objectAtIndex:indexPath.row];
-        [entrada deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [self refrescarEntradas:nil];
-        }];
-    }
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    DetalleEntradaController *destViewController = segue.destinationViewController;
-    if ([[segue identifier] isEqualToString:@"muestraEntrada"]) {
+    ConfirmarPedidoController *destViewController = segue.destinationViewController;
+    if ([[segue identifier] isEqualToString:@"confirmarPedido"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
-        [destViewController setEntradaObject:object nueva:NO];
-    } else if ([[segue identifier] isEqualToString:@"creaEntrada"]) {
-        // Creamos el objeto y lo pasamos al controller del detalle
-        PFObject *entrada = [PFObject objectWithClassName:@"Articulo"];
-        [destViewController setEntradaObject:entrada nueva:YES];
+        [destViewController setPedidoObject:object];
     }
 }
-
- 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 @end

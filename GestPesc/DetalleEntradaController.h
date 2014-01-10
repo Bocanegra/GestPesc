@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface DetalleEntradaController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
+@interface DetalleEntradaController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
 - (void)setEntradaObject:(PFObject *)miEntrada nueva:(BOOL)esNueva;
 

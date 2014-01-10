@@ -50,7 +50,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 #pragma mark - Gestión del detalle de la entrada
 
 - (void)configureView {
@@ -121,18 +120,17 @@
         [hud hide:YES];
         if (!error) {
             // Correcto, se muestra un mensaje
-            [LAUtils alertStatus:@"¡Entrada actualizada!" withTitle:@"Info" andDelegate:self];
+            [LAUtils alertStatus:@"¡Entrada actualizada!" withTitle:@"Info" andDelegate:self.navigationController];
             // Notificamos a table view para que recargue las entradas desde Parse
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refrescarEntradas" object:self];
             // Dismiss the controller
             [self dismissViewControllerAnimated:YES completion:nil];
         } else {
-            [LAUtils alertStatus:@"Hay problemas para actualizar la entrada" withTitle:@"Error" andDelegate:self];
+            [LAUtils alertStatus:@"Hay problemas para actualizar la entrada" withTitle:@"Error" andDelegate:self.navigationController];
         }
         // Y volvemos a la lista de Entradas
         [self.navigationController popViewControllerAnimated:YES];
     }];
-    
 }
 
 

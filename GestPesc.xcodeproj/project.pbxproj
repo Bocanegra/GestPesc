@@ -254,6 +254,8 @@
 		15829645186DA2F2004F1CAA /* DetalleEntradaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15829643186DA2F2004F1CAA /* DetalleEntradaController.m */; };
 		A02C7148187C7FFC00114904 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A02C7147187C7FFC00114904 /* MBProgressHUD.m */; };
 		A0CC2792187EBAD800E40177 /* README.TXT in Resources */ = {isa = PBXBuildFile; fileRef = A0CC2791187EBAD800E40177 /* README.TXT */; };
+		A0CC939E1880088900501FCB /* PedidosController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CC939D1880088900501FCB /* PedidosController.m */; };
+		A0CC93A118800C3B00501FCB /* ConfirmarPedidoController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CC93A018800C3B00501FCB /* ConfirmarPedidoController.m */; };
 		A0E1E0E41879DCE300CC45CE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E1E0E31879DCE300CC45CE /* Parse.framework */; };
 		A0E1E0E51879DCE300CC45CE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E1E0E31879DCE300CC45CE /* Parse.framework */; };
 /* End PBXBuildFile section */
@@ -525,6 +527,10 @@
 		A02C7146187C7FFC00114904 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		A02C7147187C7FFC00114904 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		A0CC2791187EBAD800E40177 /* README.TXT */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.TXT; sourceTree = "<group>"; };
+		A0CC939C1880088900501FCB /* PedidosController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PedidosController.h; sourceTree = "<group>"; };
+		A0CC939D1880088900501FCB /* PedidosController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PedidosController.m; sourceTree = "<group>"; };
+		A0CC939F18800C3B00501FCB /* ConfirmarPedidoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmarPedidoController.h; sourceTree = "<group>"; };
+		A0CC93A018800C3B00501FCB /* ConfirmarPedidoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmarPedidoController.m; sourceTree = "<group>"; };
 		A0E1E0E31879DCE300CC45CE /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -616,12 +622,16 @@
 		154D8C6E1861B7AB00082F16 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				15829640186DA2F2004F1CAA /* EntradasController.h */,
-				15829641186DA2F2004F1CAA /* EntradasController.m */,
+				A0CC939F18800C3B00501FCB /* ConfirmarPedidoController.h */,
+				A0CC93A018800C3B00501FCB /* ConfirmarPedidoController.m */,
 				15829642186DA2F2004F1CAA /* DetalleEntradaController.h */,
 				15829643186DA2F2004F1CAA /* DetalleEntradaController.m */,
+				15829640186DA2F2004F1CAA /* EntradasController.h */,
+				15829641186DA2F2004F1CAA /* EntradasController.m */,
 				154D8C7D1861B7AB00082F16 /* LoginViewController.h */,
 				154D8C7E1861B7AB00082F16 /* LoginViewController.m */,
+				A0CC939C1880088900501FCB /* PedidosController.h */,
+				A0CC939D1880088900501FCB /* PedidosController.m */,
 			);
 			name = Controllers;
 			path = GestPesc;
@@ -1212,8 +1222,10 @@
 			files = (
 				154D8C751861B7AB00082F16 /* main.m in Sources */,
 				154D8C791861B7AB00082F16 /* LAAppDelegate.m in Sources */,
+				A0CC939E1880088900501FCB /* PedidosController.m in Sources */,
 				15829644186DA2F2004F1CAA /* EntradasController.m in Sources */,
 				154D8E6D18620B8700082F16 /* LAUtils.m in Sources */,
+				A0CC93A118800C3B00501FCB /* ConfirmarPedidoController.m in Sources */,
 				154D8C7F1861B7AB00082F16 /* LoginViewController.m in Sources */,
 				15829645186DA2F2004F1CAA /* DetalleEntradaController.m in Sources */,
 				A02C7148187C7FFC00114904 /* MBProgressHUD.m in Sources */,
