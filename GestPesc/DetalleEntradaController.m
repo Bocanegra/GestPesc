@@ -25,6 +25,8 @@
 @property (strong, nonatomic) PFObject *entrada;
 @property NSDateFormatter *formatoFecha;
 @property BOOL nuevaEntrada;
+@property (assign, nonatomic) id currentResponder;
+@property NSArray *articulos;
 
 - (IBAction)cogerFotoEntrada:(id)sender;
 - (IBAction)guardarEntrada:(id)sender;
@@ -33,7 +35,11 @@
 
 @end
 
-@implementation DetalleEntradaController
+@implementation DetalleEntradaController {
+    NSArray *resultadosBusqueda;
+}
+
+@synthesize articulos;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,6 +60,19 @@
         _entrada = miEntrada;
         [self configureView];
     }
+    // Si es una entrada nueva, se cargan los artículos en caché (si no están aún)
+    PFQuery *query = [PFQuery queryWithClassName:@"Articulo"];
+    [query includeKey:@"fk_categoria"];
+    query.cachePolicy = kPFCachePolicyCacheElseNetwork;
+    query.maxCacheAge = 60 * 60 * 24 * 1;  // 1 día, en segundos
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSLog(@"Cargada lista de %d Artículos", objects.count);
+            articulos = objects;
+        } else {
+            NSLog(@"Error al cargar la lista de Artículos: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 - (void)configureView {
@@ -89,6 +108,15 @@
         return 0;
     }
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.currentResponder resignFirstResponder];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 - (IBAction)guardarEntrada:(id)sender {
@@ -141,21 +169,23 @@
 #pragma mark - Métodos para la captura de imagen
 
 - (IBAction)cogerFotoEntrada:(id)sender {
-    NSLog(@"cogerFotoEntrada");
-    if (([UIImagePickerController isSourceTypeAvailable:
-          UIImagePickerControllerSourceTypeSavedPhotosAlbum] == NO)) {
-        return;
+    if (self.nuevaEntrada) {
+        NSLog(@"cogerFotoEntrada");
+        if (([UIImagePickerController isSourceTypeAvailable:
+              UIImagePickerControllerSourceTypeSavedPhotosAlbum] == NO)) {
+            return;
+        }
+            UIImagePickerController *mediaUI = [[UIImagePickerController alloc] init];
+        mediaUI.sourceType = UIImagePickerControllerCameraCaptureModePhoto;
+    
+        // Displays saved pictures from the Camera Roll album.
+        mediaUI.mediaTypes = @[(NSString*)kUTTypeImage];
+    
+        // TODO: De momento no deja editar la foto, habrá que permitirlo
+        mediaUI.allowsEditing = NO;
+        mediaUI.delegate = self;
+        [self.navigationController presentViewController:mediaUI animated:YES completion:nil];
     }
-    UIImagePickerController *mediaUI = [[UIImagePickerController alloc] init];
-    mediaUI.sourceType = UIImagePickerControllerCameraCaptureModePhoto;
-    
-    // Displays saved pictures from the Camera Roll album.
-    mediaUI.mediaTypes = @[(NSString*)kUTTypeImage];
-    
-    // TODO: De momento no deja editar la foto, habrá que permitirlo
-    mediaUI.allowsEditing = NO;
-    mediaUI.delegate = self;
-    [self.navigationController presentViewController:mediaUI animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -172,7 +202,16 @@
 
 #pragma mark - TextField and TextView delegate
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.currentResponder = textField;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    self.currentResponder = textView;
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    [textView resignFirstResponder];
     return YES;
 }
 
@@ -181,9 +220,33 @@
     return YES;
 }
 
--(BOOL)textViewShouldEndEditing:(UITextView *)textView {
-    [textView resignFirstResponder];
+#pragma mark - Métodos de filtrado predictivo
+
+- (void)filtrarContenidoBusqueda:(NSString*)textoBuscar scope:(NSString*)scope {
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.nombre contains[cd] %@", textoBuscar];
+    resultadosBusqueda = [self.articulos filteredArrayUsingPredicate:resultPredicate];
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    [self filtrarContenidoBusqueda:searchString
+                             scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                    objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
     return YES;
+}
+
+// Este método es para cambiar el botón de "Cancelar" por "Ok" en la predictiva
+- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
+    self.searchDisplayController.searchBar.showsCancelButton = YES;
+    UIButton *cancelButton;
+    UIView *topView = self.searchDisplayController.searchBar.subviews[0];
+    for (UIView *subView in topView.subviews) {
+        if ([subView isKindOfClass:NSClassFromString(@"UINavigationButton")]) {
+            cancelButton = (UIButton*)subView;
+        }
+    }
+    if (cancelButton) {
+        [cancelButton setTitle:@"Ok" forState:UIControlStateNormal];
+    }
 }
 
 @end

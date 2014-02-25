@@ -122,7 +122,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uhh-HO-Euk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1533" y="232"/>
+            <point key="canvasLocation" x="1528" y="446"/>
         </scene>
         <!--Confirmar Pedido Controller - Confirmar pedido-->
         <scene sceneID="svN-x7-eO8">
@@ -151,7 +151,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EnX-Ku-jqQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2038" y="232"/>
+            <point key="canvasLocation" x="2038" y="446"/>
         </scene>
         <!--Navigation Controller - Entradas-->
         <scene sceneID="VxO-7Q-zlQ">
@@ -260,26 +260,27 @@
         <scene sceneID="0F1-wD-5h4">
             <objects>
                 <tableViewController id="9Gq-xU-dtw" customClass="DetalleEntradaController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="QOM-zP-9JN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="QOM-zP-9JN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="720"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexTrackingBackgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection id="k8B-k9-Fj8">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="8za-cp-0MB">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="8za-cp-0MB">
                                         <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8za-cp-0MB" id="gO4-YD-r15">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <searchBar contentMode="redraw" id="VwI-Ki-Uf9">
+                                                <searchBar contentMode="redraw" placeholder="Busca artículo aquí" id="kr5-4U-fVM">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <outlet property="delegate" destination="9Gq-xU-dtw" id="4xD-FS-3hd"/>
+                                                        <outlet property="delegate" destination="9Gq-xU-dtw" id="wE2-Eh-qOc"/>
                                                     </connections>
                                                 </searchBar>
                                             </subviews>
@@ -293,7 +294,7 @@
                                         <rect key="frame" x="0.0" y="108" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hZJ-HC-iiF" id="9h1-J3-nAv">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dS9-DO-CGL">
@@ -313,7 +314,7 @@
                                         <rect key="frame" x="0.0" y="180" width="320" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jDu-R5-4XR" id="jbe-ek-Fit">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="159"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stock total:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZH2-gH-UHS">
@@ -395,7 +396,7 @@
                                         <rect key="frame" x="0.0" y="362" width="320" height="162"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rel-k1-VMq" id="Usz-j4-vOf">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="161"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="30" id="j8n-Jv-nyc">
@@ -438,7 +439,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         <rect key="frame" x="0.0" y="546" width="320" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iWf-LP-8DI" id="PHj-1Y-mUP">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Comentarios de la entrada" id="imb-ek-xCN">
@@ -469,6 +470,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="comentariosTextView" destination="imb-ek-xCN" id="464-Wf-5jX"/>
                         <outlet property="fechaEnvioDatePicker" destination="j8n-Jv-nyc" id="LKA-BL-8zL"/>
@@ -476,7 +478,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="fotoProductoImage" destination="2TT-1K-fZ8" id="9Bi-Tf-Q04"/>
                         <outlet property="nombreProductoLabel" destination="dS9-DO-CGL" id="EGZ-Pr-12C"/>
                         <outlet property="precioTextField" destination="l3u-g7-3L8" id="jac-og-Os3"/>
-                        <outlet property="searchDisplayController" destination="3Ak-e1-nBS" id="6rB-M2-Q41"/>
+                        <outlet property="searchDisplayController" destination="XfE-ei-c6L" id="Dqp-7s-GBs"/>
                         <outlet property="stockDisponibleTextField" destination="hhW-q5-j4b" id="djn-0s-vnQ"/>
                         <outlet property="stockTotalTextField" destination="Feh-q3-agJ" id="4qw-Tt-2hs"/>
                     </connections>
@@ -485,10 +487,18 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <searchDisplayController id="3Ak-e1-nBS">
                     <connections>
                         <outlet property="delegate" destination="9Gq-xU-dtw" id="ZuG-fu-g74"/>
-                        <outlet property="searchBar" destination="VwI-Ki-Uf9" id="4Dq-eV-Y9d"/>
                         <outlet property="searchContentsController" destination="9Gq-xU-dtw" id="9yR-wC-N2h"/>
                         <outlet property="searchResultsDataSource" destination="9Gq-xU-dtw" id="u6i-34-d8I"/>
                         <outlet property="searchResultsDelegate" destination="9Gq-xU-dtw" id="A2u-PW-oJN"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="XfE-ei-c6L">
+                    <connections>
+                        <outlet property="delegate" destination="9Gq-xU-dtw" id="9iF-W8-xIA"/>
+                        <outlet property="searchBar" destination="kr5-4U-fVM" id="O9s-gb-w19"/>
+                        <outlet property="searchContentsController" destination="9Gq-xU-dtw" id="jfT-u4-ijN"/>
+                        <outlet property="searchResultsDataSource" destination="9Gq-xU-dtw" id="j4o-1S-dWx"/>
+                        <outlet property="searchResultsDelegate" destination="9Gq-xU-dtw" id="Vpz-Rm-kHX"/>
                     </connections>
                 </searchDisplayController>
             </objects>
@@ -511,7 +521,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bBI-Pu-hAH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1002" y="232"/>
+            <point key="canvasLocation" x="1002" y="446"/>
         </scene>
     </scenes>
     <resources>
