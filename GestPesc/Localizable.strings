@@ -1,0 +1,11 @@
+/*
+ Localizable.strings
+ GestPesc
+ 
+ Created by Luis Angel on 20/02/14.
+ 
+ */
+
+"Loading..." = "Cargando...";
+"Load more..." = "Cargar más...";
+"Pull down to refresh..." = "Tira hacia abajo para recargar...";

@@ -52,9 +52,9 @@
     self = [super initWithCoder:aCoder];
     if (self) {
         // The className to query on
-        self.parseClassName = @"Articulo";
+        self.parseClassName = @"Entrada";
         // The key of the PFObject to display in the label of the default cell style
-        self.textKey = @"nombre";
+        // self.textKey = @"nombre";
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
         // Whether the built-in pagination is enabled
@@ -65,17 +65,23 @@
 }
 
 - (PFQuery *)queryForTable {
-    NSLog(@"queryForTable");
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+    // Filtro de entradas del usuario actual
+    PFUser *david = [PFUser logInWithUsername:@"David" password:@"12345"];
+    [query whereKey:@"fk_proveedor" equalTo:david];
+    // Filtro de eventos "comprobados"
+    [query whereKey:@"comprobado" equalTo:@YES];
+    // Ordenados los items por fecha de creación de la entrada
     [query orderByAscending:@"createdAt"];
+    // Esto se hace para que también cargue la información del objeto Artículo
+    [query includeKey:@"Articulo"];
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
     return query;
 }
 
 #pragma mark - Table View
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
-    NSLog(@"cellForRowAtIndexPath");
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"entradaCell"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"entradaCell"];

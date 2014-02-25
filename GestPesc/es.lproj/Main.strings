@@ -1,0 +1,96 @@
+
+/* Class = "IBUIBarButtonItem"; title = "Ok"; ObjectID = "1ab-pi-YrN"; */
+"1ab-pi-YrN.title" = "Ok";
+
+/* Class = "IBUILabel"; text = "Calidad"; ObjectID = "3f9-Ir-MCW"; */
+"3f9-Ir-MCW.text" = "Calidad";
+
+/* Class = "IBUITableViewController"; title = "Master"; ObjectID = "7Af-pD-kns"; */
+"7Af-pD-kns.title" = "Master";
+
+/* Class = "IBUILabel"; text = "Stock:"; ObjectID = "7QG-18-WyI"; */
+"7QG-18-WyI.text" = "Stock:";
+
+/* Class = "IBUILabel"; text = "Gest Pesc"; ObjectID = "7j5-fo-6sT"; */
+"7j5-fo-6sT.text" = "Gest Pesc";
+
+/* Class = "IBUITableViewSection"; headerTitle = "Comentarios"; ObjectID = "BCM-lc-meK"; */
+"BCM-lc-meK.headerTitle" = "Comentarios";
+
+/* Class = "IBUIButton"; normalTitle = "Entrar"; ObjectID = "CV3-nh-48l"; */
+"CV3-nh-48l.normalTitle" = "Entrar";
+
+/* Class = "IBUITextField"; placeholder = "uds."; ObjectID = "Feh-q3-agJ"; */
+"Feh-q3-agJ.placeholder" = "uds.";
+
+/* Class = "IBUINavigationItem"; title = "Confirmar pedido"; ObjectID = "I15-mc-2A3"; */
+"I15-mc-2A3.title" = "Confirmar pedido";
+
+/* Class = "IBUITabBarItem"; title = "Entradas"; ObjectID = "Jsg-aw-wxH"; */
+"Jsg-aw-wxH.title" = "Entradas";
+
+/* Class = "IBUITableViewSection"; headerTitle = "Disponibilidad"; ObjectID = "Kdq-bx-1nE"; */
+"Kdq-bx-1nE.headerTitle" = "Disponibilidad";
+
+/* Class = "IBUILabel"; text = "Fecha envío"; ObjectID = "Mla-bq-mkw"; */
+"Mla-bq-mkw.text" = "Fecha envío";
+
+/* Class = "IBUILabel"; text = "Precio unidad:"; ObjectID = "Ox4-1i-LXu"; */
+"Ox4-1i-LXu.text" = "Precio unidad:";
+
+/* Class = "IBUILabel"; text = "Formato caja"; ObjectID = "SB5-FK-w4L"; */
+"SB5-FK-w4L.text" = "Formato caja";
+
+/* Class = "IBUINavigationItem"; title = "Pedidos"; ObjectID = "Sm5-8l-j2W"; */
+"Sm5-8l-j2W.title" = "Pedidos";
+
+/* Class = "IBUITextField"; placeholder = "Usuario"; ObjectID = "TlH-a8-Tj6"; */
+"TlH-a8-Tj6.placeholder" = "Usuario";
+
+/* Class = "IBUITableViewSection"; headerTitle = "Fecha envío"; ObjectID = "XAd-33-jBS"; */
+"XAd-33-jBS.headerTitle" = "Fecha envío";
+
+/* Class = "IBUILabel"; text = "Disponible:"; ObjectID = "ZDV-h3-fLo"; */
+"ZDV-h3-fLo.text" = "Disponible:";
+
+/* Class = "IBUILabel"; text = "Stock total:"; ObjectID = "ZH2-gH-UHS"; */
+"ZH2-gH-UHS.text" = "Stock total:";
+
+/* Class = "IBUITextField"; placeholder = "primera, segunda, ..."; ObjectID = "a99-bo-dww"; */
+"a99-bo-dww.placeholder" = "primera, segunda, ...";
+
+/* Class = "IBUITextField"; placeholder = "uds. o kgs./caja"; ObjectID = "eDI-Y6-i1S"; */
+"eDI-Y6-i1S.placeholder" = "uds. o kgs./caja";
+
+/* Class = "IBUITabBarItem"; title = "Pedidos"; ObjectID = "gMI-M0-JGF"; */
+"gMI-M0-JGF.title" = "Pedidos";
+
+/* Class = "IBUITextField"; placeholder = "uds."; ObjectID = "hhW-q5-j4b"; */
+"hhW-q5-j4b.placeholder" = "uds.";
+
+/* Class = "IBUITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do "; ObjectID = "imb-ek-xCN"; */
+"imb-ek-xCN.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do ";
+
+/* Class = "IBUILabel"; text = "Título"; ObjectID = "jPh-p7-afQ"; */
+"jPh-p7-afQ.text" = "Título";
+
+/* Class = "IBUITextField"; placeholder = "€/ud."; ObjectID = "l3u-g7-3L8"; */
+"l3u-g7-3L8.placeholder" = "€/ud.";
+
+/* Class = "IBUINavigationItem"; title = "Entradas"; ObjectID = "mAk-ie-6TM"; */
+"mAk-ie-6TM.title" = "Entradas";
+
+/* Class = "IBUILabel"; text = "Stock"; ObjectID = "n5r-a7-K6M"; */
+"n5r-a7-K6M.text" = "Stock";
+
+/* Class = "IBUINavigationItem"; title = "Entrada"; ObjectID = "nbc-ty-L1D"; */
+"nbc-ty-L1D.title" = "Entrada";
+
+/* Class = "IBUITextField"; placeholder = "Artículo o producto"; ObjectID = "vdO-YN-7bV"; */
+"vdO-YN-7bV.placeholder" = "Artículo o producto";
+
+/* Class = "IBUITextField"; placeholder = "Clave"; ObjectID = "wDa-EO-epE"; */
+"wDa-EO-epE.placeholder" = "Clave";
+
+/* Class = "IBUILabel"; text = "Precio"; ObjectID = "znp-U5-n5T"; */
+"znp-U5-n5T.text" = "Precio";
