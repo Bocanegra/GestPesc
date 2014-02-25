@@ -12,5 +12,7 @@
 
 + (void)alertStatus:(NSString *)textMsg withTitle:(NSString *)title andDelegate:(id /*<UIAlertViewDelegate>*/)delegate;
 
++ (NSDate *)fechaDesdeHoy;
+
 
 @end

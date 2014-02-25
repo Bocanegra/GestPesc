@@ -21,4 +21,14 @@
     [alertView show];
 }
 
++ (NSDate *)fechaDesdeHoy {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *nowComponents = [calendar components: NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:[NSDate date]];
+    [nowComponents setHour:0];
+    [nowComponents setMinute:0];
+    [nowComponents setSecond:0];
+    NSDate *hoy = [calendar dateFromComponents:nowComponents];
+    return hoy;
+}
+
 @end

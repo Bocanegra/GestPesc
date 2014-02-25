@@ -11,7 +11,7 @@
 
 
 @interface EntradasController () {
-    
+    NSDate *hoy;
 }
 @end
 
@@ -67,14 +67,17 @@
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
     // Filtro de entradas del usuario actual
+# warning - Quitar esto
     PFUser *david = [PFUser logInWithUsername:@"David" password:@"12345"];
     [query whereKey:@"fk_proveedor" equalTo:david];
     // Filtro de eventos "comprobados"
     [query whereKey:@"comprobado" equalTo:@YES];
+    // Filtro de eventos del día
+    [query whereKey:@"createdAt" greaterThan:[LAUtils fechaDesdeHoy]];
     // Ordenados los items por fecha de creación de la entrada
     [query orderByAscending:@"createdAt"];
     // Esto se hace para que también cargue la información del objeto Artículo
-    [query includeKey:@"Articulo"];
+    [query includeKey:@"fk_articulo"];
     query.cachePolicy = kPFCachePolicyNetworkElseCache;
     return query;
 }
@@ -86,19 +89,20 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"entradaCell"];
     }
-
     // Configurar la celda con datos del backend
-    PFFile *thumbnail = [object objectForKey:@"imagen"];
+    PFFile *thumbnail = object[@"imagen"];
     PFImageView *thumbnailImageView = (PFImageView*)[cell viewWithTag:103];
-    thumbnailImageView.image = [UIImage imageNamed:@"BgLeather.png"];
-    thumbnailImageView.file = thumbnail;
-    [thumbnailImageView loadInBackground];
+    thumbnailImageView.image = [UIImage imageNamed:@"photo-frame.png"];
+    if (![thumbnail isKindOfClass:[NSNull class]]) {
+        thumbnailImageView.file = thumbnail;
+        [thumbnailImageView loadInBackground];
+    }
     UILabel *nombreLabel = (UILabel*) [cell viewWithTag:100];
-    nombreLabel.text = [object objectForKey:@"nombre"];
+    nombreLabel.text = object[@"fk_articulo"][@"nombre"];
     UILabel *stockLabel = (UILabel*) [cell viewWithTag:101];
-    stockLabel.text = [[object objectForKey:@"stock_total"] stringValue];
+    stockLabel.text = [NSString stringWithFormat:@"%@ / %@", [object[@"stock_disponible"] stringValue], [object[@"stock_total"] stringValue]];
     UILabel *precioLabel = (UILabel*) [cell viewWithTag:102];
-    precioLabel.text = [NSString stringWithFormat:@"%@ €", [[object objectForKey:@"precio"] stringValue]];
+    precioLabel.text = [NSString stringWithFormat:@"%@ €", [object[@"precio"] stringValue]];
     return cell;
 }
 
@@ -125,7 +129,7 @@
         [destViewController setEntradaObject:object nueva:NO];
     } else if ([[segue identifier] isEqualToString:@"creaEntrada"]) {
         // Creamos el objeto y lo pasamos al controller del detalle
-        PFObject *entrada = [PFObject objectWithClassName:@"Articulo"];
+        PFObject *entrada = [PFObject objectWithClassName:@"Entrada"];
         [destViewController setEntradaObject:entrada nueva:YES];
     }
 }

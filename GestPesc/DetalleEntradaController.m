@@ -14,14 +14,13 @@
 
 @interface DetalleEntradaController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *nombreProductoTextField;
+@property (weak, nonatomic) IBOutlet UILabel *nombreProductoLabel;
 @property (weak, nonatomic) IBOutlet UITextField *stockTotalTextField;
 @property (weak, nonatomic) IBOutlet UITextField *precioTextField;
 @property (weak, nonatomic) IBOutlet UITextField *stockDisponibleTextField;
-@property (weak, nonatomic) IBOutlet PFImageView *fotoProducto;
+@property (weak, nonatomic) IBOutlet PFImageView *fotoProductoImage;
 @property (weak, nonatomic) IBOutlet UITextField *formatoCajaTextField;
-@property (weak, nonatomic) IBOutlet UITextField *calidadTextField;
-@property (weak, nonatomic) IBOutlet UITextField *fechaEnvioTextField;
+@property (weak, nonatomic) IBOutlet UIDatePicker *fechaEnvioDatePicker;
 @property (weak, nonatomic) IBOutlet UITextView *comentariosTextView;
 @property (strong, nonatomic) PFObject *entrada;
 @property NSDateFormatter *formatoFecha;
@@ -30,8 +29,7 @@
 - (IBAction)cogerFotoEntrada:(id)sender;
 - (IBAction)guardarEntrada:(id)sender;
 - (void)configureView;
--(void)fechaEnvioCambiada:(NSNotification *)notification;
-
+- (void)fechaEnvioCambiada:(NSNotification *)notification;
 
 @end
 
@@ -39,7 +37,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     self.formatoFecha = [[NSDateFormatter alloc] init];
     [self.formatoFecha setDateFormat:@"dd/MM/yyyy"];
     [self configureView];
@@ -47,45 +44,51 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Gestión del detalle de la entrada
 
-- (void)configureView {
-    NSLog(@"configureView");
-    // Actualiza la página de la entrada con los datos pasados
-    if (self.entrada) {
-        // Título de la pantalla
-        self.title = [self.entrada objectForKey:@"nombre"];
-        // Nombre del producto
-        self.nombreProductoTextField.text = [self.entrada objectForKey:@"nombre"];
-        // Imagen del producto
-        PFFile *thumbnail = [self.entrada objectForKey:@"imagen"];
-        PFImageView *thumbnailImageView = (PFImageView*)[self.view viewWithTag:201];
-        thumbnailImageView.image = [UIImage imageNamed:@"BgLeather.png"];
-        thumbnailImageView.file = thumbnail;
-        [thumbnailImageView loadInBackground];
-        // Stock, precio y disponible
-        self.stockTotalTextField.text = [[self.entrada objectForKey:@"stock_total"] stringValue];
-        self.precioTextField.text = [[self.entrada objectForKey:@"precio"] stringValue];
-        self.stockDisponibleTextField.text = [[self.entrada objectForKey:@"stock_disponible"] stringValue];
-        // Formato caja, fecha envío y calidad
-        self.formatoCajaTextField.text = [[self.entrada objectForKey:@"formato_caja"] stringValue];
-//        self.calidadTextField.text = [self.entrada objectForKey:@"fk_categoria"];
-        NSDate *fecha = [self.entrada objectForKey:@"entregado"];
-        self.fechaEnvioTextField.text = [self.formatoFecha stringFromDate:fecha];
-        // Comentarios
-        self.comentariosTextView.text = [self.entrada objectForKey:@"descripcion"];
-    }
-}
-
 - (void)setEntradaObject:(PFObject *)miEntrada nueva:(BOOL)esNueva {
+    self.nuevaEntrada = esNueva;
     if (_entrada != miEntrada) {
         _entrada = miEntrada;
         [self configureView];
     }
-    self.nuevaEntrada = esNueva;
+}
+
+- (void)configureView {
+    // Actualiza la página de la entrada con los datos pasados
+    if (self.entrada && !self.nuevaEntrada) {
+        // Título de la pantalla
+        self.title = @"Detalle entrada";
+        // Nombre del producto
+        self.nombreProductoLabel.text = _entrada[@"fk_articulo"][@"nombre"];
+        // Imagen del producto
+        PFFile *foto = _entrada[@"imagen"];
+        self.fotoProductoImage.image = [UIImage imageNamed:@"photo-frame.png"];
+        if (![foto isKindOfClass:[NSNull class]]) {
+            self.fotoProductoImage.file = foto;
+            [self.fotoProductoImage loadInBackground];
+        }
+        // Stock, precio y disponible
+        self.stockTotalTextField.text = [_entrada[@"stock_total"] stringValue];
+        self.precioTextField.text = [_entrada[@"precio"] stringValue];
+        self.stockDisponibleTextField.text = [_entrada[@"stock_disponible"] stringValue];
+        // Formato caja y fecha envío
+        self.formatoCajaTextField.text = [_entrada[@"formato_caja"] stringValue];
+        self.fechaEnvioDatePicker.date = _entrada[@"entregado"];
+        // Comentarios
+        self.comentariosTextView.text = _entrada[@"observacion"];
+    }
+}
+
+#pragma mark - Tableview delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0 && indexPath.row == 0 && !self.nuevaEntrada) {
+        return 0;
+    }
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 - (IBAction)guardarEntrada:(id)sender {
@@ -93,18 +96,19 @@
     // Actualizamos los datos del objeto entrada
     // TODO: Comprobar datos de entrada
     @try {
+        /*
         self.entrada[@"nombre"] = _nombreProductoTextField.text;
         self.entrada[@"stock_total"] = @([_stockTotalTextField.text integerValue]);
         self.entrada[@"precio"] = @([_precioTextField.text integerValue]);
         self.entrada[@"stock_disponible"] = @([_stockDisponibleTextField.text integerValue]);
         self.entrada[@"formato_caja"] = @([_formatoCajaTextField.text integerValue]);
         self.entrada[@"descripcion"] = _fechaEnvioTextField.text;
-        //    [self.entrada setObject:_calidadTextField.text forKey:@"fk_categoria"];
         //    [self.entrada setObject:_fechaEnvioTextField.text forKey:@"entregado"];
         // Imagen en JPG, con escasa compresión
         NSData *imageData = UIImageJPEGRepresentation(_fotoProducto.image, 0.8);
         PFFile *imageFile = [PFFile fileWithName:@"foto.jpg" data:imageData];
         self.entrada[@"imagen"] = imageFile;
+         */
     } @catch (NSException *exception) {
         [LAUtils alertStatus:@"Datos no válidos, revíselos" withTitle:@"Error" andDelegate:self];
     }
@@ -158,7 +162,7 @@
     NSLog(@"didFinishPickingMediaWithInfo");
     // TODO: Falta reducir la foto a lo que necesitemos
     UIImage *originalImage = (UIImage *)[info objectForKey:UIImagePickerControllerOriginalImage];
-    self.fotoProducto.image = originalImage;
+    self.fotoProductoImage.image = originalImage;
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -169,19 +173,6 @@
 #pragma mark - TextField and TextView delegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    if (textField == self.fechaEnvioTextField) {
-        // Abro la vista para elegir la fecha de envío
-        UIDatePicker* picker = [[UIDatePicker alloc] init];
-        picker.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        picker.datePickerMode = UIDatePickerModeDateAndTime;
-        [picker addTarget:self
-                   action:@selector(fechaEnvioCambiada:)
-         forControlEvents:UIControlEventValueChanged];
-        CGSize pickerSize = [picker sizeThatFits:CGSizeZero];
-        picker.frame = CGRectMake(0.0, 250, pickerSize.width, 460);
-        [self.view addSubview:picker];
-        return NO;
-    }
     return YES;
 }
 
@@ -195,5 +186,5 @@
     return YES;
 }
 
-
 @end
+
