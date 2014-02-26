@@ -10,6 +10,7 @@
 #import "MBProgressHUD.h"
 #import "LAUtils.h"
 #import <Foundation/NSCharacterSet.h>
+#import "ArticuloController.h"
 
 
 @interface DetalleEntradaController ()
@@ -26,12 +27,10 @@
 @property NSDateFormatter *formatoFecha;
 @property BOOL nuevaEntrada;
 @property (assign, nonatomic) id currentResponder;
-@property NSArray *articulos;
 
 - (IBAction)cogerFotoEntrada:(id)sender;
 - (IBAction)guardarEntrada:(id)sender;
 - (void)configureView;
-- (void)fechaEnvioCambiada:(NSNotification *)notification;
 
 @end
 
@@ -39,13 +38,21 @@
     NSArray *resultadosBusqueda;
 }
 
-@synthesize articulos;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.formatoFecha = [[NSDateFormatter alloc] init];
     [self.formatoFecha setDateFormat:@"dd/MM/yyyy"];
     [self configureView];
+    // Creamos un nuevo notificador para refrescar los datos de la tabla
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refrescaEntrada:)
+                                                 name:@"refrescaEntrada"
+                                               object:nil];
+}
+
+- (void)refrescaEntrada:(NSNotification *)notification {
+    // Recarga la entrada, de momento sólo cambio el nombre
+    self.nombreProductoLabel.text = _entrada[@"fk_articulo"][@"nombre"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,19 +67,6 @@
         _entrada = miEntrada;
         [self configureView];
     }
-    // Si es una entrada nueva, se cargan los artículos en caché (si no están aún)
-    PFQuery *query = [PFQuery queryWithClassName:@"Articulo"];
-    [query includeKey:@"fk_categoria"];
-    query.cachePolicy = kPFCachePolicyCacheElseNetwork;
-    query.maxCacheAge = 60 * 60 * 24 * 1;  // 1 día, en segundos
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            NSLog(@"Cargada lista de %d Artículos", objects.count);
-            articulos = objects;
-        } else {
-            NSLog(@"Error al cargar la lista de Artículos: %@ %@", error, [error userInfo]);
-        }
-    }];
 }
 
 - (void)configureView {
@@ -103,21 +97,25 @@
 
 #pragma mark - Tableview delegate
 
+/*
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0 && indexPath.row == 0 && !self.nuevaEntrada) {
         return 0;
     }
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
+*/
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    return NO;
+    return YES;
 }
 
+/*
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.currentResponder resignFirstResponder];
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
+*/
 
 - (IBAction)guardarEntrada:(id)sender {
     NSLog(@"guardarEntrada");
@@ -196,8 +194,13 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)fechaEnvioCambiada:(NSNotification *)notification {
-    
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"buscaArticulo"]) {
+        ArticuloController *viewController = segue.destinationViewController;
+        viewController.entrada = _entrada;
+    }
 }
 
 #pragma mark - TextField and TextView delegate
@@ -218,35 +221,6 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
-}
-
-#pragma mark - Métodos de filtrado predictivo
-
-- (void)filtrarContenidoBusqueda:(NSString*)textoBuscar scope:(NSString*)scope {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.nombre contains[cd] %@", textoBuscar];
-    resultadosBusqueda = [self.articulos filteredArrayUsingPredicate:resultPredicate];
-}
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-    [self filtrarContenidoBusqueda:searchString
-                             scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-                                    objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-    return YES;
-}
-
-// Este método es para cambiar el botón de "Cancelar" por "Ok" en la predictiva
-- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
-    self.searchDisplayController.searchBar.showsCancelButton = YES;
-    UIButton *cancelButton;
-    UIView *topView = self.searchDisplayController.searchBar.subviews[0];
-    for (UIView *subView in topView.subviews) {
-        if ([subView isKindOfClass:NSClassFromString(@"UINavigationButton")]) {
-            cancelButton = (UIButton*)subView;
-        }
-    }
-    if (cancelButton) {
-        [cancelButton setTitle:@"Ok" forState:UIControlStateNormal];
-    }
 }
 
 @end

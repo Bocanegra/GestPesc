@@ -10,6 +10,7 @@
 
 @interface DetalleEntradaController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
+- (void)refrescaEntrada:(NSNotification *)notification;
 - (void)setEntradaObject:(PFObject *)miEntrada nueva:(BOOL)esNueva;
 
 @end

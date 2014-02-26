@@ -259,6 +259,7 @@
 		15C5E88818BCC25400264A74 /* Layers.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C5E88518BCC25400264A74 /* Layers.png */; };
 		15C5E88918BCC25400264A74 /* Light_Bulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C5E88618BCC25400264A74 /* Light_Bulb.png */; };
 		15C5E88B18BCC3AF00264A74 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15C5E88A18BCC3AF00264A74 /* Localizable.strings */; };
+		15F0454618BDF745005826CB /* ArticuloController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F0454518BDF745005826CB /* ArticuloController.m */; };
 		A02C7148187C7FFC00114904 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A02C7147187C7FFC00114904 /* MBProgressHUD.m */; };
 		A0CC2792187EBAD800E40177 /* README.TXT in Resources */ = {isa = PBXBuildFile; fileRef = A0CC2791187EBAD800E40177 /* README.TXT */; };
 		A0CC939E1880088900501FCB /* PedidosController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CC939D1880088900501FCB /* PedidosController.m */; };
@@ -539,6 +540,8 @@
 		15C5E88518BCC25400264A74 /* Layers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Layers.png; sourceTree = "<group>"; };
 		15C5E88618BCC25400264A74 /* Light_Bulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Light_Bulb.png; sourceTree = "<group>"; };
 		15C5E88A18BCC3AF00264A74 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		15F0454418BDF745005826CB /* ArticuloController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticuloController.h; sourceTree = "<group>"; };
+		15F0454518BDF745005826CB /* ArticuloController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticuloController.m; sourceTree = "<group>"; };
 		A02C7146187C7FFC00114904 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		A02C7147187C7FFC00114904 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		A0CC2791187EBAD800E40177 /* README.TXT */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.TXT; sourceTree = "<group>"; };
@@ -589,12 +592,12 @@
 			isa = PBXGroup;
 			children = (
 				A0CC2791187EBAD800E40177 /* README.TXT */,
-				A02C7149187C800E00114904 /* MBProgressHUD */,
 				154D8E6B18620B8700082F16 /* LAUtils.h */,
 				154D8E6C18620B8700082F16 /* LAUtils.m */,
 				154D8C7A1861B7AB00082F16 /* Main.storyboard */,
 				154D8C771861B7AB00082F16 /* LAAppDelegate.h */,
 				154D8C781861B7AB00082F16 /* LAAppDelegate.m */,
+				A02C7149187C800E00114904 /* MBProgressHUD */,
 				15C5E87D18BCC22F00264A74 /* Images */,
 				154D8C6E1861B7AB00082F16 /* Controllers */,
 				154D8C8D1861B7AB00082F16 /* GestPescTests */,
@@ -648,6 +651,8 @@
 				154D8C7E1861B7AB00082F16 /* LoginViewController.m */,
 				A0CC939C1880088900501FCB /* PedidosController.h */,
 				A0CC939D1880088900501FCB /* PedidosController.m */,
+				15F0454418BDF745005826CB /* ArticuloController.h */,
+				15F0454518BDF745005826CB /* ArticuloController.m */,
 			);
 			name = Controllers;
 			path = GestPesc;
@@ -1257,6 +1262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15F0454618BDF745005826CB /* ArticuloController.m in Sources */,
 				154D8C751861B7AB00082F16 /* main.m in Sources */,
 				154D8C791861B7AB00082F16 /* LAAppDelegate.m in Sources */,
 				A0CC939E1880088900501FCB /* PedidosController.m in Sources */,

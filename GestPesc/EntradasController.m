@@ -73,7 +73,8 @@
     // Filtro de eventos "comprobados"
     [query whereKey:@"comprobado" equalTo:@YES];
     // Filtro de eventos del día
-    [query whereKey:@"createdAt" greaterThan:[LAUtils fechaDesdeHoy]];
+# warning - Poner esto
+//    [query whereKey:@"createdAt" greaterThan:[LAUtils fechaDesdeHoy]];
     // Ordenados los items por fecha de creación de la entrada
     [query orderByAscending:@"createdAt"];
     // Esto se hace para que también cargue la información del objeto Artículo
