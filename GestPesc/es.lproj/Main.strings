@@ -36,7 +36,7 @@
 "Mla-bq-mkw.text" = "Fecha envío";
 
 /* Class = "IBUILabel"; text = "Precio unidad:"; ObjectID = "Ox4-1i-LXu"; */
-"Ox4-1i-LXu.text" = "Precio unidad:";
+"Ox4-1i-LXu.text" = "Precio unidad";
 
 /* Class = "IBUILabel"; text = "Formato caja"; ObjectID = "SB5-FK-w4L"; */
 "SB5-FK-w4L.text" = "Formato caja";
@@ -54,13 +54,13 @@
 "ZDV-h3-fLo.text" = "Disponible:";
 
 /* Class = "IBUILabel"; text = "Stock total:"; ObjectID = "ZH2-gH-UHS"; */
-"ZH2-gH-UHS.text" = "Stock total:";
+"ZH2-gH-UHS.text" = "Stock total";
 
 /* Class = "IBUITextField"; placeholder = "primera, segunda, ..."; ObjectID = "a99-bo-dww"; */
 "a99-bo-dww.placeholder" = "primera, segunda, ...";
 
 /* Class = "IBUITextField"; placeholder = "uds. o kgs./caja"; ObjectID = "eDI-Y6-i1S"; */
-"eDI-Y6-i1S.placeholder" = "uds. o kgs./caja";
+"eDI-Y6-i1S.placeholder" = "uds.";
 
 /* Class = "IBUITabBarItem"; title = "Pedidos"; ObjectID = "gMI-M0-JGF"; */
 "gMI-M0-JGF.title" = "Pedidos";
@@ -75,7 +75,7 @@
 "jPh-p7-afQ.text" = "Título";
 
 /* Class = "IBUITextField"; placeholder = "€/ud."; ObjectID = "l3u-g7-3L8"; */
-"l3u-g7-3L8.placeholder" = "€/ud.";
+"l3u-g7-3L8.placeholder" = "€/kg.";
 
 /* Class = "IBUINavigationItem"; title = "Entradas"; ObjectID = "mAk-ie-6TM"; */
 "mAk-ie-6TM.title" = "Entradas";

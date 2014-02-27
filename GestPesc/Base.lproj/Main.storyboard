@@ -89,7 +89,7 @@
             </objects>
             <point key="canvasLocation" x="468" y="-94"/>
         </scene>
-        <!--Pedidos Controller - Pedidos-->
+        <!--Pedidos Controller - Confirmación de pedido-->
         <scene sceneID="0GS-Sl-dJh">
             <objects>
                 <tableViewController id="eHR-dp-iWT" customClass="PedidosController" sceneMemberID="viewController">
@@ -112,13 +112,7 @@
                             <outlet property="delegate" destination="eHR-dp-iWT" id="yjZ-tO-Zfk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Pedidos" id="Sm5-8l-j2W">
-                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="r4u-2h-li0">
-                            <connections>
-                                <segue destination="TBk-g9-P1l" kind="push" identifier="confirmarPedido" id="699-8f-1ZG"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Confirmación de pedido" id="Sm5-8l-j2W"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uhh-HO-Euk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -134,7 +128,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Z3Q-x9-5bW">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z3Q-x9-5bW" id="8Nk-5R-AZc">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -151,7 +145,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EnX-Ku-jqQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2212" y="446"/>
+            <point key="canvasLocation" x="2038" y="446"/>
         </scene>
         <!--Navigation Controller - Entradas-->
         <scene sceneID="VxO-7Q-zlQ">
@@ -261,14 +255,14 @@
             <objects>
                 <tableViewController id="9Gq-xU-dtw" customClass="DetalleEntradaController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="QOM-zP-9JN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="720"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="665"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexTrackingBackgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection id="inO-gX-JNy">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="hZJ-HC-iiF">
+                                    <tableViewCell tag="303" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="hZJ-HC-iiF">
                                         <rect key="frame" x="0.0" y="64" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hZJ-HC-iiF" id="9h1-J3-nAv">
@@ -291,33 +285,27 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Disponibilidad" id="Kdq-bx-1nE">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="160" id="jDu-R5-4XR">
-                                        <rect key="frame" x="0.0" y="136" width="320" height="160"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="124" id="jDu-R5-4XR">
+                                        <rect key="frame" x="0.0" y="136" width="320" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jDu-R5-4XR" id="jbe-ek-Fit">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stock total:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZH2-gH-UHS">
-                                                    <rect key="frame" x="23" y="16" width="106" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stock total" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZH2-gH-UHS">
+                                                    <rect key="frame" x="18" y="16" width="106" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Precio unitario:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ox4-1i-LXu">
-                                                    <rect key="frame" x="13" y="50" width="116" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disponible:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZDV-h3-fLo">
-                                                    <rect key="frame" x="43" y="86" width="86" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Precio unitario" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ox4-1i-LXu">
+                                                    <rect key="frame" x="13" y="50" width="111" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="uds." minimumFontSize="17" id="Feh-q3-agJ">
-                                                    <rect key="frame" x="137" y="12" width="58" height="30"/>
+                                                    <rect key="frame" x="131" y="12" width="64" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -326,7 +314,7 @@
                                                     </connections>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="€/kg." minimumFontSize="17" id="l3u-g7-3L8">
-                                                    <rect key="frame" x="137" y="47" width="58" height="30"/>
+                                                    <rect key="frame" x="131" y="47" width="64" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -334,17 +322,8 @@
                                                         <outlet property="delegate" destination="9Gq-xU-dtw" id="HVk-ce-gla"/>
                                                     </connections>
                                                 </textField>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="uds." minimumFontSize="17" id="hhW-q5-j4b">
-                                                    <rect key="frame" x="137" y="82" width="58" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="9Gq-xU-dtw" id="FS7-po-UUd"/>
-                                                    </connections>
-                                                </textField>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="uds. o kgs./caja" minimumFontSize="17" id="eDI-Y6-i1S">
-                                                    <rect key="frame" x="137" y="120" width="166" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="uds." minimumFontSize="17" id="eDI-Y6-i1S">
+                                                    <rect key="frame" x="131" y="82" width="64" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -352,8 +331,8 @@
                                                         <outlet property="delegate" destination="9Gq-xU-dtw" id="udf-zb-0hQ"/>
                                                     </connections>
                                                 </textField>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Formato caja:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SB5-FK-w4L">
-                                                    <rect key="frame" x="23" y="123" width="106" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Formato caja" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SB5-FK-w4L">
+                                                    <rect key="frame" x="23" y="85" width="101" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
@@ -380,7 +359,7 @@
                             <tableViewSection headerTitle="Fecha envío" id="XAd-33-jBS">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="162" id="Rel-k1-VMq">
-                                        <rect key="frame" x="0.0" y="318" width="320" height="162"/>
+                                        <rect key="frame" x="0.0" y="282" width="320" height="162"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rel-k1-VMq" id="Usz-j4-vOf">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
@@ -423,13 +402,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <tableViewSection headerTitle="Comentarios" id="BCM-lc-meK">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="150" id="iWf-LP-8DI">
-                                        <rect key="frame" x="0.0" y="502" width="320" height="150"/>
+                                        <rect key="frame" x="0.0" y="466" width="320" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iWf-LP-8DI" id="PHj-1Y-mUP">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Comentarios de la entrada" id="imb-ek-xCN">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text=">" id="imb-ek-xCN">
                                                     <rect key="frame" x="41" y="7" width="259" height="159"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -451,7 +430,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Nueva entrada" id="nbc-ty-L1D">
-                        <barButtonItem key="rightBarButtonItem" title="Ok" id="1ab-pi-YrN">
+                        <barButtonItem key="rightBarButtonItem" tag="304" image="Add.png" id="1ab-pi-YrN">
                             <connections>
                                 <action selector="guardarEntrada:" destination="9Gq-xU-dtw" id="UTC-IM-XkR"/>
                             </connections>
@@ -459,14 +438,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="articuloCell" destination="hZJ-HC-iiF" id="CHs-db-Nnk"/>
                         <outlet property="comentariosTextView" destination="imb-ek-xCN" id="464-Wf-5jX"/>
                         <outlet property="fechaEnvioDatePicker" destination="j8n-Jv-nyc" id="LKA-BL-8zL"/>
                         <outlet property="formatoCajaTextField" destination="eDI-Y6-i1S" id="F9k-vV-e4J"/>
                         <outlet property="fotoProductoImage" destination="2TT-1K-fZ8" id="9Bi-Tf-Q04"/>
+                        <outlet property="guardarButton" destination="1ab-pi-YrN" id="bBy-4M-QuE"/>
                         <outlet property="nombreProductoLabel" destination="dS9-DO-CGL" id="EGZ-Pr-12C"/>
                         <outlet property="precioTextField" destination="l3u-g7-3L8" id="jac-og-Os3"/>
                         <outlet property="searchDisplayController" destination="XfE-ei-c6L" id="Dqp-7s-GBs"/>
-                        <outlet property="stockDisponibleTextField" destination="hhW-q5-j4b" id="djn-0s-vnQ"/>
                         <outlet property="stockTotalTextField" destination="Feh-q3-agJ" id="4qw-Tt-2hs"/>
                     </connections>
                 </tableViewController>
@@ -490,12 +470,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="2038" y="-461"/>
         </scene>
-        <!--Articulo Controller-->
+        <!--Articulo Controller - Artículos-->
         <scene sceneID="23e-le-D93">
             <objects>
                 <tableViewController id="bh5-o6-GXB" customClass="ArticuloController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="22" sectionFooterHeight="22" id="d9s-bZ-Ml8">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="720"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="665"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Busca el artículo aquí" id="E84-4b-sYl">
@@ -529,7 +509,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <outlet property="delegate" destination="bh5-o6-GXB" id="gTe-nq-yjw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="caT-hg-B40"/>
+                    <navigationItem key="navigationItem" title="Artículos" id="caT-hg-B40"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="5bm-Ob-Vzd" id="ElL-XL-a6f"/>
                     </connections>
@@ -568,6 +548,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
+        <image name="Add.png" width="25" height="25"/>
         <image name="Download.png" width="19" height="27"/>
         <image name="Layers.png" width="27" height="22"/>
         <image name="Light_Bulb.png" width="17" height="27"/>

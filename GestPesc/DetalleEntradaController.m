@@ -18,11 +18,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *nombreProductoLabel;
 @property (weak, nonatomic) IBOutlet UITextField *stockTotalTextField;
 @property (weak, nonatomic) IBOutlet UITextField *precioTextField;
-@property (weak, nonatomic) IBOutlet UITextField *stockDisponibleTextField;
 @property (weak, nonatomic) IBOutlet PFImageView *fotoProductoImage;
 @property (weak, nonatomic) IBOutlet UITextField *formatoCajaTextField;
 @property (weak, nonatomic) IBOutlet UIDatePicker *fechaEnvioDatePicker;
 @property (weak, nonatomic) IBOutlet UITextView *comentariosTextView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *guardarButton;
+@property (weak, nonatomic) IBOutlet UITableViewCell *articuloCell;
 @property (strong, nonatomic) PFObject *entrada;
 @property NSDateFormatter *formatoFecha;
 @property BOOL nuevaEntrada;
@@ -44,7 +45,6 @@
     [super viewDidLoad];
     self.formatoFecha = [[NSDateFormatter alloc] init];
     [self.formatoFecha setDateFormat:@"dd/MM/yyyy"];
-    [self configureView];
     // Se pone el título por defecto al nombre del Artículo
     kTituloArticulo = @"Introduce aquí el artículo...";
     _nombreProductoLabel.text = kTituloArticulo;
@@ -60,11 +60,13 @@
                            [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
                            [[UIBarButtonItem alloc]initWithTitle:@"Ok" style:UIBarButtonItemStyleDone target:self action:@selector(okNumberPad)],
                            nil];
-    _stockTotalTextField.inputAccessoryView = numberToolbar;
-    _precioTextField.inputAccessoryView = numberToolbar;
-    _stockDisponibleTextField.inputAccessoryView = numberToolbar;
-    _formatoCajaTextField.inputAccessoryView = numberToolbar;
-    _comentariosTextView.inputAccessoryView = numberToolbar;
+    if (_nuevaEntrada) {
+        _stockTotalTextField.inputAccessoryView = numberToolbar;
+        _precioTextField.inputAccessoryView = numberToolbar;
+        _formatoCajaTextField.inputAccessoryView = numberToolbar;
+        _comentariosTextView.inputAccessoryView = numberToolbar;
+    }
+    [self configureView];
 }
 
 - (void)cancelarNumberPad {
@@ -76,8 +78,6 @@
     if (self.currentResponder == _stockTotalTextField) {
         [_precioTextField becomeFirstResponder];
     } else if (self.currentResponder == _precioTextField) {
-        [_stockDisponibleTextField becomeFirstResponder];
-    } else if (self.currentResponder == _stockDisponibleTextField) {
         [_formatoCajaTextField becomeFirstResponder];
     } else {
         [self.currentResponder resignFirstResponder];
@@ -100,7 +100,6 @@
     self.nuevaEntrada = esNueva;
     if (_entrada != miEntrada) {
         _entrada = miEntrada;
-        [self configureView];
     }
 }
 
@@ -121,12 +120,23 @@
         // Stock, precio y disponible
         self.stockTotalTextField.text = [_entrada[@"stock_total"] stringValue];
         self.precioTextField.text = [_entrada[@"precio"] stringValue];
-        self.stockDisponibleTextField.text = [_entrada[@"stock_disponible"] stringValue];
         // Formato caja y fecha envío
         self.formatoCajaTextField.text = [_entrada[@"formato_caja"] stringValue];
         self.fechaEnvioDatePicker.date = _entrada[@"entregado"];
         // Comentarios
         self.comentariosTextView.text = _entrada[@"observacion"];
+    }
+    // Tengo que hacer No-editables los campos si no es nueva la entrada
+    if (!_nuevaEntrada) {
+        [_articuloCell setAccessoryType:UITableViewCellAccessoryNone];
+        [_guardarButton setEnabled:NO];
+        [_stockTotalTextField setEnabled:NO];
+        [_precioTextField setEnabled:NO];
+        [_formatoCajaTextField setEnabled:NO];
+        [_fechaEnvioDatePicker setMinimumDate:self.fechaEnvioDatePicker.date];
+        [_fechaEnvioDatePicker setMaximumDate:self.fechaEnvioDatePicker.date];
+        [_comentariosTextView setEditable:NO];
+        
     }
 }
 
@@ -147,7 +157,7 @@
 */
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+    return _nuevaEntrada;
 }
 
 - (IBAction)guardarEntrada:(id)sender {
@@ -156,7 +166,7 @@
     @try {
         // Datos obligatorios
         if (!_entrada[@"fk_articulo"]) {
-            [LAUtils alertStatus:@"Tienes que elegir un Artículo" withTitle:@"Nueva entrada" andDelegate:self];
+            [LAUtils alertStatus:@"Tienes que elegir un artículo" withTitle:@"Nueva entrada" andDelegate:self];
             return;
         }
         if ([_stockTotalTextField.text isEqualToString:@""]) {
@@ -169,11 +179,6 @@
             return;
         }
         self.entrada[@"precio"] = @([_precioTextField.text integerValue]);
-        if ([_stockDisponibleTextField.text isEqualToString:@""]) {
-            [LAUtils alertStatus:@"Tienes que introducir el stock disponible" withTitle:@"Nueva entrada" andDelegate:self];
-            return;
-        }
-        self.entrada[@"stock_disponible"] = @([_stockDisponibleTextField.text integerValue]);
         if ([_formatoCajaTextField.text isEqualToString:@""]) {
             [LAUtils alertStatus:@"Tienes que introducir el formato de caja" withTitle:@"Nueva entrada" andDelegate:self];
             return;
@@ -186,6 +191,8 @@
         self.entrada[@"entregado"] = _fechaEnvioDatePicker.date;
         
         // Datos no obligatorios
+        // El stock disponible es igual al total al principio
+        self.entrada[@"stock_disponible"] = @([_stockTotalTextField.text integerValue]);
         self.entrada[@"observacion"] = _comentariosTextView.text;
         // Imagen en JPG, con escasa compresión
         if (_fotoProductoImage.image) {
@@ -212,7 +219,7 @@
         [hud hide:YES];
         if (!error) {
             // Correcto, se muestra un mensaje
-            [LAUtils alertStatus:@"¡Entrada actualizada!" withTitle:@"Info" andDelegate:self.navigationController];
+            [LAUtils alertStatus:@"Se ha guardado con éxito" withTitle:@"Entradas" andDelegate:self.navigationController];
             // Notificamos a table view para que recargue las entradas desde Parse
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refrescarEntradas" object:self];
             // Dismiss the controller
