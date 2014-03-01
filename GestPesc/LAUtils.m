@@ -7,6 +7,7 @@
 //
 
 #import "LAUtils.h"
+#import "MBProgressHUD.h"
 
 @implementation LAUtils
 

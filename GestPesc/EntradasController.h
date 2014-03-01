@@ -12,5 +12,4 @@
 
 @interface EntradasController : PFQueryTableViewController
 
-
 @end

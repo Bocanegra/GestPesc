@@ -222,34 +222,32 @@
             [LAUtils alertStatus:@"Se ha guardado con éxito" withTitle:@"Entradas" andDelegate:self.navigationController];
             // Notificamos a table view para que recargue las entradas desde Parse
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refrescarEntradas" object:self];
-            // Dismiss the controller
-            [self dismissViewControllerAnimated:YES completion:nil];
+            // Y volvemos a la lista de Entradas
+            [self.navigationController popViewControllerAnimated:YES];
         } else {
             [LAUtils alertStatus:@"Hay problemas para actualizar la entrada" withTitle:@"Error" andDelegate:self.navigationController];
         }
-        // Y volvemos a la lista de Entradas
-        [self.navigationController popViewControllerAnimated:YES];
     }];
 }
-
 
 #pragma mark - Métodos para la captura de imagen
 
 - (IBAction)cogerFotoEntrada:(id)sender {
     if (self.nuevaEntrada) {
         NSLog(@"cogerFotoEntrada");
-        if (([UIImagePickerController isSourceTypeAvailable:
-              UIImagePickerControllerSourceTypeSavedPhotosAlbum] == NO)) {
+        /*
+        if (([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceType] == NO)) {
             return;
         }
-            UIImagePickerController *mediaUI = [[UIImagePickerController alloc] init];
+        */
+        UIImagePickerController *mediaUI = [[UIImagePickerController alloc] init];
         mediaUI.sourceType = UIImagePickerControllerCameraCaptureModePhoto;
     
         // Displays saved pictures from the Camera Roll album.
         mediaUI.mediaTypes = @[(NSString*)kUTTypeImage];
     
         // TODO: De momento no deja editar la foto, habrá que permitirlo
-        mediaUI.allowsEditing = NO;
+        mediaUI.allowsEditing = YES;
         mediaUI.delegate = self;
         [self.navigationController presentViewController:mediaUI animated:YES completion:nil];
     }
@@ -258,7 +256,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     NSLog(@"didFinishPickingMediaWithInfo");
     // TODO: Falta reducir la foto a lo que necesitemos
-    UIImage *originalImage = (UIImage *)[info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage *originalImage = (UIImage *)[info objectForKey:UIImagePickerControllerEditedImage];
     self.fotoProductoImage.image = originalImage;
     [picker dismissViewControllerAnimated:YES completion:nil];
 }

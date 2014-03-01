@@ -17,7 +17,6 @@
 
 @implementation EntradasController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Crear botones de arriba
@@ -48,7 +47,6 @@
 
 // Configure Parse access to backend
 - (id)initWithCoder:(NSCoder *)aCoder {
-    NSLog(@"initWithCoder");
     self = [super initWithCoder:aCoder];
     if (self) {
         // The className to query on
@@ -67,11 +65,7 @@
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
     // Filtro de entradas del usuario actual
-# warning - Quitar esto
-    PFUser *david = [PFUser logInWithUsername:@"David" password:@"12345"];
-    [query whereKey:@"fk_proveedor" equalTo:david];
-    // Filtro de eventos "comprobados"
-    [query whereKey:@"comprobado" equalTo:@YES];
+    [query whereKey:@"fk_proveedor" equalTo:[PFUser currentUser]];
     // Filtro de eventos del día
 # warning - Poner esto
 //    [query whereKey:@"createdAt" greaterThan:[LAUtils fechaDesdeHoy]];
@@ -101,9 +95,15 @@
     UILabel *nombreLabel = (UILabel*) [cell viewWithTag:100];
     nombreLabel.text = object[@"fk_articulo"][@"nombre"];
     UILabel *stockLabel = (UILabel*) [cell viewWithTag:101];
-    stockLabel.text = [NSString stringWithFormat:@"%@ / %@", [object[@"stock_disponible"] stringValue], [object[@"stock_total"] stringValue]];
+    stockLabel.text = [NSString stringWithFormat:@"%@ kgs. de %@", [object[@"stock_disponible"] stringValue], [object[@"stock_total"] stringValue]];
     UILabel *precioLabel = (UILabel*) [cell viewWithTag:102];
     precioLabel.text = [NSString stringWithFormat:@"%@ €", [object[@"precio"] stringValue]];
+    UIImageView *comprobadoImage = (UIImageView *) [cell viewWithTag:104];
+    if ([object[@"comprobado"] boolValue]) {
+        [comprobadoImage setImage:[UIImage imageNamed:@"Light_Bulb.png"]];
+    } else {
+        [comprobadoImage setImage:[UIImage imageNamed:@"Red_Bulb.png"]];
+    }
     return cell;
 }
 

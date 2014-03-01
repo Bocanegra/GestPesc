@@ -20,3 +20,9 @@ Temas pendientes:
 3) Histórico
 
 4) Ajustes
+
+
+- Iconos
+- Pantalla de arranque
+- Fondo de app
+- Letras

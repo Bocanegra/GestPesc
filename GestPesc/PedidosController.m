@@ -8,6 +8,7 @@
 
 #import "PedidosController.h"
 #import "ConfirmarPedidoController.h"
+#import "LAUtils.h"
 
 
 @interface PedidosController ()
@@ -15,14 +16,6 @@
 @end
 
 @implementation PedidosController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,7 +33,6 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,27 +43,31 @@
 #pragma mark - Parse methods
 // Configurar Parse para acceder a objetos Pedido
 - (id)initWithCoder:(NSCoder *)aCoder {
-    NSLog(@"initWithCoder");
     self = [super initWithCoder:aCoder];
     if (self) {
         // The className to query on
-        self.parseClassName = @"Pedido";
-        // The key of the PFObject to display in the label of the default cell style
-        //self.textKey = @"nombre";
+        self.parseClassName = @"Entrada";
         // Whether the built-in pull-to-refresh is enabled
-        self.pullToRefreshEnabled = YES;
+        self.pullToRefreshEnabled = NO;
         // Whether the built-in pagination is enabled
-        self.paginationEnabled = YES;
-        self.objectsPerPage = 10;
+        self.paginationEnabled = NO;
     }
     return self;
 }
 
 - (PFQuery *)queryForTable {
-    NSLog(@"queryForTable");
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+    // Filtro de entradas del usuario actual
+    [query whereKey:@"fk_proveedor" equalTo:[PFUser currentUser]];
+    // Filtro de eventos del día
+    [query whereKey:@"createdAt" greaterThan:[LAUtils fechaDesdeHoy]];
+    // Ordenados los items por fecha de creación de la entrada
     [query orderByAscending:@"createdAt"];
+    // Y que estén comprobados
+    [query whereKey:@"comprobado" equalTo:@YES];
+    // Esto se hace para que también cargue la información del objeto Artículo
+    [query includeKey:@"fk_articulo"];
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
     return query;
 }
 
@@ -97,16 +93,19 @@
     UILabel *precioLabel = (UILabel*) [cell viewWithTag:102];
     precioLabel.text = [NSString stringWithFormat:@"%@ €", [[object objectForKey:@"precio"] stringValue]];
      */
+    cell.textLabel.text = object[@"fk_articulo"][@"nombre"];
     return cell;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    /*
     ConfirmarPedidoController *destViewController = segue.destinationViewController;
     if ([[segue identifier] isEqualToString:@"confirmarPedido"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
         [destViewController setPedidoObject:object];
     }
+    */
 }
 
 @end
