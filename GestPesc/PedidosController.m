@@ -74,27 +74,19 @@
 
 #pragma mark - Métodos de Table View
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
-    NSLog(@"cellForRowAtIndexPath");
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pedidoCell"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"pedidoCell"];
     }
     // Configurar la celda con datos del backend
-    /*
-    PFFile *thumbnail = [object objectForKey:@"imagen"];
-    PFImageView *thumbnailImageView = (PFImageView*)[cell viewWithTag:103];
-    thumbnailImageView.image = [UIImage imageNamed:@"BgLeather.png"];
-    thumbnailImageView.file = thumbnail;
-    [thumbnailImageView loadInBackground];
-    UILabel *nombreLabel = (UILabel*) [cell viewWithTag:100];
-    nombreLabel.text = [object objectForKey:@"nombre"];
-    UILabel *stockLabel = (UILabel*) [cell viewWithTag:101];
-    stockLabel.text = [[object objectForKey:@"stock_total"] stringValue];
-    UILabel *precioLabel = (UILabel*) [cell viewWithTag:102];
-    precioLabel.text = [NSString stringWithFormat:@"%@ €", [[object objectForKey:@"precio"] stringValue]];
-     */
-    cell.textLabel.text = object[@"fk_articulo"][@"nombre"];
+    cell.detailTextLabel.text = object[@"fk_articulo"][@"nombre"];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ kgs.", [[self calculaStockPedir:object] stringValue]];
     return cell;
+}
+
+// Calcula lo que hay que pedir en función del stock de la entrada y el factor de corrección
+- (NSInteger *)calculaStockPedir:(PFObject *)entrada {
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

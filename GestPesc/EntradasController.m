@@ -8,7 +8,7 @@
 
 #import "EntradasController.h"
 #import "DetalleEntradaController.h"
-
+#import "MBProgressHUD.h"
 
 @interface EntradasController () {
     NSDate *hoy;
@@ -100,7 +100,7 @@
     precioLabel.text = [NSString stringWithFormat:@"%@ €", [object[@"precio"] stringValue]];
     UIImageView *comprobadoImage = (UIImageView *) [cell viewWithTag:104];
     if ([object[@"comprobado"] boolValue]) {
-        [comprobadoImage setImage:[UIImage imageNamed:@"Light_Bulb.png"]];
+//        [comprobadoImage setImage:[UIImage imageNamed:@"Light_Bulb.png"]];
     } else {
         [comprobadoImage setImage:[UIImage imageNamed:@"Red_Bulb.png"]];
     }
@@ -109,16 +109,24 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Devolver NO si alguna fila en concreto no queremos que se pueda editar (borrar)
-    return YES;
+    PFObject *entrada = [self.objects objectAtIndex:indexPath.row];
+    return ![entrada[@"comprobado"] boolValue];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Eliminamos la entrada del backend
+        // Eliminamos la entrada del backend, sólo si no está comprobada ya
         PFObject *entrada = [self.objects objectAtIndex:indexPath.row];
-        [entrada deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [self refrescarEntradas:nil];
-        }];
+        if (![entrada[@"comprobado"] boolValue]) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeIndeterminate;
+            hud.labelText = @"Eliminando";
+            [hud show:YES];
+            [entrada deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                [hud hide:YES];
+                [self refrescarEntradas:nil];
+            }];
+        }
     }
 }
 
