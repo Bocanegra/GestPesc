@@ -31,16 +31,15 @@
 - (void)refrescarEntradas:(NSNotification *)notification {
     // Recarga los objetos de la query de Parse
     [self loadObjects];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refrescarPedidos" object:self];
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Parse methods
@@ -100,9 +99,9 @@
     precioLabel.text = [NSString stringWithFormat:@"%@ €", [object[@"precio"] stringValue]];
     UIImageView *comprobadoImage = (UIImageView *) [cell viewWithTag:104];
     if ([object[@"comprobado"] boolValue]) {
-//        [comprobadoImage setImage:[UIImage imageNamed:@"Light_Bulb.png"]];
+        [comprobadoImage setImage:[UIImage imageNamed:@"icon_tick_pressed.png"]];
     } else {
-        [comprobadoImage setImage:[UIImage imageNamed:@"Red_Bulb.png"]];
+        [comprobadoImage setImage:[UIImage imageNamed:@"icon_tick.png"]];
     }
     return cell;
 }
@@ -142,20 +141,5 @@
         [destViewController setEntradaObject:entrada nueva:YES];
     }
 }
-
- 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 @end

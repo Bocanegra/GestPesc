@@ -204,6 +204,8 @@
         self.entrada[@"fk_proveedor"] = [PFUser currentUser];
         // Flag de comprobado a False
         self.entrada[@"comprobado"] = @NO;
+        // Factor de envío
+        self.entrada[@"factor_envio"] = @0.5;
     } @catch (NSException *exception) {
         [LAUtils alertStatus:@"Datos no válidos, revíselos" withTitle:@"Error" andDelegate:self];
     }

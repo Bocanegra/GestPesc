@@ -30,11 +30,6 @@
 
 # pragma mark Login Actions
 
-- (IBAction)backgroundClick:(id)sender {
-    [usuarioTextField resignFirstResponder];
-    [claveTextField resignFirstResponder];
-}
-
 - (IBAction)loginAction:(id)sender {
     @try {
         [usuarioTextField resignFirstResponder];

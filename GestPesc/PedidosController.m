@@ -48,7 +48,7 @@
         // The className to query on
         self.parseClassName = @"Entrada";
         // Whether the built-in pull-to-refresh is enabled
-        self.pullToRefreshEnabled = NO;
+        self.pullToRefreshEnabled = YES;
         // Whether the built-in pagination is enabled
         self.paginationEnabled = NO;
     }
@@ -67,12 +67,12 @@
     [query whereKey:@"comprobado" equalTo:@YES];
     // Esto se hace para que también cargue la información del objeto Artículo
     [query includeKey:@"fk_articulo"];
-    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+    query.cachePolicy = kPFCachePolicyNetworkOnly;
     return query;
 }
 
-
 #pragma mark - Métodos de Table View
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pedidoCell"];
     if (cell == nil) {
@@ -80,13 +80,15 @@
     }
     // Configurar la celda con datos del backend
     cell.detailTextLabel.text = object[@"fk_articulo"][@"nombre"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ kgs.", [[self calculaStockPedir:object] stringValue]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%i kgs.", [self calculaStockPedir:object]];
     return cell;
 }
 
 // Calcula lo que hay que pedir en función del stock de la entrada y el factor de corrección
-- (NSInteger *)calculaStockPedir:(PFObject *)entrada {
-    
+- (int)calculaStockPedir:(PFObject *)entrada {
+    float factor_envio = [entrada[@"factor_envio"] floatValue];
+    int stock_disponible = [entrada[@"stock_disponible"] intValue];
+    return (int)(stock_disponible * factor_envio);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
