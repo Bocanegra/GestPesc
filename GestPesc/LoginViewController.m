@@ -12,6 +12,8 @@
 
 @interface LoginViewController ()
 
+@property (assign, nonatomic) UITextField *currentResponder;
+
 @end
 
 @implementation LoginViewController
@@ -22,6 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundClick)];
+    [self.view addGestureRecognizer:tap];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,6 +33,20 @@
 }
 
 # pragma mark Login Actions
+
+- (IBAction)okUsuario:(id)sender {
+    if (self.currentResponder == self.usuarioTextField) {
+        [self.claveTextField becomeFirstResponder];
+    } else if (self.currentResponder == self.claveTextField) {
+        [self.currentResponder resignFirstResponder];
+        [self loginAction:nil];
+    }
+}
+
+- (void)backgroundClick {
+    [usuarioTextField resignFirstResponder];
+    [claveTextField resignFirstResponder];
+}
 
 - (IBAction)loginAction:(id)sender {
     @try {
@@ -57,5 +75,17 @@
         [LAUtils alertStatus:@"Error al entrar" withTitle:@"Error" andDelegate:self];
     }
 }
+
+#pragma mark - TextField and TextView delegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.currentResponder = textField;
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    [textView resignFirstResponder];
+    return YES;
+}
+
 
 @end

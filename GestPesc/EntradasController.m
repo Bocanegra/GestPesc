@@ -15,7 +15,10 @@
 }
 @end
 
-@implementation EntradasController
+@implementation EntradasController {
+    int celdaABorrar;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -94,7 +97,7 @@
     UILabel *nombreLabel = (UILabel*) [cell viewWithTag:100];
     nombreLabel.text = object[@"fk_articulo"][@"nombre"];
     UILabel *stockLabel = (UILabel*) [cell viewWithTag:101];
-    stockLabel.text = [NSString stringWithFormat:@"%@ kgs. de %@", [object[@"stock_disponible"] stringValue], [object[@"stock_total"] stringValue]];
+    stockLabel.text = [NSString stringWithFormat:@"%@ de %@ kgs.", [object[@"stock_disponible"] stringValue], [object[@"stock_total"] stringValue]];
     UILabel *precioLabel = (UILabel*) [cell viewWithTag:102];
     precioLabel.text = [NSString stringWithFormat:@"%@ €", [object[@"precio"] stringValue]];
     UIImageView *comprobadoImage = (UIImageView *) [cell viewWithTag:104];
@@ -114,8 +117,17 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Confirmación
+        celdaABorrar = indexPath.row;
+        [LAUtils alertOkCancel:@"Confirma que deseas borrar la entrada" withTitle:@"Borrado de entrada" andDelegate:self];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger) buttonIndex {
+    if (buttonIndex == 1) {
         // Eliminamos la entrada del backend, sólo si no está comprobada ya
-        PFObject *entrada = [self.objects objectAtIndex:indexPath.row];
+        PFObject *entrada = [self.objects objectAtIndex:celdaABorrar];
         if (![entrada[@"comprobado"] boolValue]) {
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.mode = MBProgressHUDModeIndeterminate;
@@ -123,10 +135,13 @@
             [hud show:YES];
             [entrada deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 [hud hide:YES];
-                [self refrescarEntradas:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"refrescarEntradas" object:self];
             }];
         }
+    } else {
+        // Cancelar
     }
+    celdaABorrar = -1;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

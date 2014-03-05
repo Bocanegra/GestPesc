@@ -22,6 +22,16 @@
     [alertView show];
 }
 
++ (void)alertOkCancel:(NSString *)textMsg withTitle:(NSString *)title andDelegate:(id)delegate {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+                                                        message:textMsg
+                                                       delegate:delegate
+                                              cancelButtonTitle:@"Cancelar"
+                                              otherButtonTitles:@"Ok", nil];
+    
+    [alertView show];
+}
+
 + (NSDate *)fechaDesdeHoy {
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *nowComponents = [calendar components: NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:[NSDate date]];

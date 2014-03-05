@@ -10,6 +10,6 @@
 #import <Parse/Parse.h>
 #import "LAUtils.h"
 
-@interface EntradasController : PFQueryTableViewController
+@interface EntradasController : PFQueryTableViewController <UIAlertViewDelegate>
 
 @end

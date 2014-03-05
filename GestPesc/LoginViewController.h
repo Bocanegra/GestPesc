@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Parse/Parse.h"
 
-@interface LoginViewController : UITableViewController <PFLogInViewControllerDelegate>
+@interface LoginViewController : UIViewController <PFLogInViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *usuarioTextField;
 @property (weak, nonatomic) IBOutlet UITextField *claveTextField;
 @property (weak, nonatomic) IBOutlet UIButton *entrarButton;
 - (IBAction)loginAction:(id)sender;
-
+    
 @end

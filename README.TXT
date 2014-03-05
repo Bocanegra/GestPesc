@@ -8,14 +8,13 @@ Temas pendientes:
 + Cuando pique fuera de un campo, que desaparezca el teclado
 + Campos no editables al ir a una entrada
 + Quitar campo stock disponible
-- Confirmar borrado de Entrada
-
++ Confirmar borrado de Entrada
 
 2) Pedidos
 + Añadir PedidosController
 + Crear ConfirmarPedidoController
++ Diseñar celda Pedido (fondo airbnb)
 - Mostrar Artículos relacionados con Pedido
-- Diseñar celda Pedido (fondo airbnb)
 
 3) Histórico
 
